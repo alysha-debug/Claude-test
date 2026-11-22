@@ -1,0 +1,36 @@
+<!-- ===== SECTION 3: WELCOME VIDEO (#welcome-video) ===== -->
+<section id="welcome-video" class="dx dx-vid" tabindex="-1" aria-labelledby="dx-wv-title">
+<style>
+/*BASE*/
+.dx-vid{background:var(--dx-white)}
+.dx-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--dx-r);overflow:hidden;background:var(--dx-ivory);border:1px solid var(--dx-line);margin:26px 0 24px;box-shadow:0 24px 48px -32px rgba(0,59,66,.45)}
+.dx-video iframe,.dx-video video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.dx-video__ph{position:absolute;inset:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;border:2px dashed var(--dx-gold);border-radius:var(--dx-r-sm);padding:16px}
+.dx-video__play{width:64px;height:64px;border-radius:50%;background:var(--dx-teal);display:grid;place-items:center}
+.dx-video__play svg{width:24px;height:24px;margin-left:4px;fill:var(--dx-cream)}
+.dx-video__ph strong{font-weight:700;font-size:1.15rem}
+.dx-video__ph span{font-size:.85rem;color:var(--dx-soft)}
+.dx-vid__nav{display:flex;flex-wrap:wrap;gap:12px}
+@supports not (aspect-ratio:16/9){.dx-video{height:0;padding-top:56.25%}}
+</style>
+<div class="dx__in">
+  <p class="dx__eyebrow">Step 1</p>
+  <h2 id="dx-wv-title">Watch the welcome video</h2>
+  <p class="dx__sub">Start here, before you set anything up.</p>
+  <div class="dx-video">
+    <!-- VIDEO EMBED GOES HERE: [WELCOME VIDEO EMBED CODE]
+         Delete the placeholder div below and paste your embed iframe in its place, e.g.
+         <iframe src="[WELCOME VIDEO EMBED URL]" title="Welcome to Distinct Tax Consulting Group®" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+         Keep the outer .dx-video wrapper: it keeps the 16:9 rounded frame. -->
+    <div class="dx-video__ph" role="img" aria-label="Welcome video coming soon">
+      <div class="dx-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+      <strong>Welcome video coming soon</strong>
+      <span>[WELCOME VIDEO EMBED CODE]</span>
+    </div>
+  </div>
+  <div class="dx-vid__nav">
+    <a class="dx__btn" href="#taxdome-video">Next: set up TaxDome</a>
+    <a class="dx__btn dx__btn--ghost" href="#steps">Back to my steps</a>
+  </div>
+</div>
+</section>

@@ -1,0 +1,72 @@
+<!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
+<section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
+<style>
+/*BASE*/
+.dx-steps__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.dx-steps__progress{min-width:220px;flex:1 1 220px;max-width:320px}
+.dx-steps__progress p{font-weight:500;font-size:.92rem;margin:0 0 8px}
+.dx-steps__bar{height:8px;border-radius:99px;background:var(--dx-ivory);overflow:hidden}
+.dx-steps__bar span{display:block;height:100%;width:0;border-radius:99px;background:var(--dx-gold);transition:width .4s ease}
+.dx-steps__list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.dx-step{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r);padding:26px 22px 22px;transition:border-color .25s ease,background .25s ease}
+.dx-step__num{font-weight:700;font-size:2.6rem;line-height:1;color:var(--dx-gold);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.dx-step p{color:var(--dx-soft);margin-bottom:18px;flex:1}
+.dx-step__done{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.92rem;font-weight:500;cursor:pointer;user-select:none}
+.dx-step__done input{width:22px;height:22px;accent-color:var(--dx-teal);margin:0;cursor:pointer}
+.dx-step.is-done{background:rgba(230,205,150,.22);border-color:var(--dx-gold)}
+.dx-step.is-done .dx-step__num::after{content:" ✓";font-size:1.4rem;color:var(--dx-teal)}
+@media (min-width:820px){.dx-steps__list{grid-template-columns:repeat(3,1fr)}}
+</style>
+<div class="dx__in">
+  <div class="dx-steps__head">
+    <div>
+      <p class="dx__eyebrow">Your next steps</p>
+      <h2 id="dx-steps-title">Three steps to get ready</h2>
+      <p class="dx__sub" style="margin:0">Work through these in order. Each button takes you to the right spot on this page.</p>
+    </div>
+    <div class="dx-steps__progress">
+      <p aria-live="polite"><span data-dx-steps-count>0</span> of 3 steps done</p>
+      <div class="dx-steps__bar" aria-hidden="true"><span data-dx-steps-bar></span></div>
+    </div>
+  </div>
+  <ol class="dx-steps__list">
+    <li class="dx-step" data-dx-step="1">
+      <span class="dx-step__num" aria-hidden="true">01</span>
+      <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
+      <p>A short welcome from our team before you get started.</p>
+      <a class="dx__btn" href="#welcome-video">Go to step 1</a>
+      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    </li>
+    <li class="dx-step" data-dx-step="2">
+      <span class="dx-step__num" aria-hidden="true">02</span>
+      <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
+      <p>Your portal is where you'll complete your organizer and upload your documents.</p>
+      <a class="dx__btn" href="#taxdome-video">Go to step 2</a>
+      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    </li>
+    <li class="dx-step" data-dx-step="3">
+      <span class="dx-step__num" aria-hidden="true">03</span>
+      <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
+      <p>See exactly what to gather, what it looks like and where to find it.</p>
+      <a class="dx__btn" href="#checklist">Go to step 3</a>
+      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    </li>
+  </ol>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('steps'); if(!root) return;
+  var KEY='dx-next-steps-progress', items=root.querySelectorAll('[data-dx-step]');
+  var count=root.querySelector('[data-dx-steps-count]'), bar=root.querySelector('[data-dx-steps-bar]');
+  var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
+  function update(){
+    var n=0;
+    items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');li.classList.toggle('is-done',cb.checked);if(cb.checked)n++;saved[li.getAttribute('data-dx-step')]=cb.checked;});
+    count.textContent=n; bar.style.width=(n/items.length*100)+'%';
+    try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
+  }
+  items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');cb.checked=!!saved[li.getAttribute('data-dx-step')];cb.addEventListener('change',update);});
+  update();
+})();
+</script>
+</section>

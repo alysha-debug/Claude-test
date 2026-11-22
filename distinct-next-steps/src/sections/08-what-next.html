@@ -1,0 +1,29 @@
+<!-- ===== SECTION 8: WHAT HAPPENS NEXT (#what-next) ===== -->
+<section id="what-next" class="dx dx-next" tabindex="-1" aria-labelledby="dx-next-title">
+<style>
+/*BASE*/
+.dx-next{background:var(--dx-cream)}
+.dx-next__line{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
+.dx-next__line li{position:relative;padding:0 0 28px 54px}
+.dx-next__line li:last-child{padding-bottom:0}
+.dx-next__line li::before{content:"";position:absolute;left:17px;top:38px;bottom:4px;width:2px;background:var(--dx-line)}
+.dx-next__line li:last-child::before{display:none}
+.dx-next__dot{position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--dx-white);border:2px solid var(--dx-gold);display:grid;place-items:center;font-weight:700;color:var(--dx-teal)}
+.dx-next__line h3{padding-top:4px}
+.dx-next__line p{color:var(--dx-soft);margin:0}
+@media (min-width:860px){
+  .dx-next__line{grid-template-columns:repeat(3,1fr);gap:22px}
+  .dx-next__line li{padding:52px 0 0 0}
+  .dx-next__line li::before{left:44px;right:-22px;top:17px;bottom:auto;width:auto;height:2px}
+}
+</style>
+<div class="dx__in">
+  <p class="dx__eyebrow">After you submit</p>
+  <h2 id="dx-next-title">What happens next</h2>
+  <ol class="dx-next__line">
+    <li><span class="dx-next__dot" aria-hidden="true">1</span><h3>Our team reviews your documents</h3><p>Once you submit, our team reviews everything you've uploaded.</p></li>
+    <li><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
+    <li><span class="dx-next__dot" aria-hidden="true">3</span><h3>You book your assessment call</h3><p>Once everything is ready, we'll email you a private link to book your assessment call.</p></li>
+  </ol>
+</div>
+</section>

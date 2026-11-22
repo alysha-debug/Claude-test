@@ -1,0 +1,111 @@
+<!-- ===== SECTION 5: DOCUMENT CHECKLIST (#checklist) ===== -->
+<!-- ALYSHA TO CONFIRM: starting list is prior tax returns, year-to-date P&L, IRS/state letters.
+     To add a document, copy one <li class="dx-doc">…</li> block; the counter updates automatically. -->
+<section id="checklist" class="dx dx-check" tabindex="-1" aria-labelledby="dx-check-title">
+<style>
+/*BASE*/
+.dx-check{background:var(--dx-white)}
+.dx-check__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:26px}
+.dx-check__count{font-weight:500;font-size:.92rem;padding:8px 16px;border-radius:99px;background:var(--dx-ivory);margin:0}
+.dx-check__list{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.dx-doc{display:flex;flex-direction:column;background:var(--dx-cream);border:1px solid var(--dx-line);border-radius:var(--dx-r);overflow:hidden;transition:border-color .25s ease}
+.dx-doc__img{position:relative;aspect-ratio:4/3;background:var(--dx-ivory);border-bottom:1px solid var(--dx-line)}
+.dx-doc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dx-doc__ph{position:absolute;inset:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;border:2px dashed var(--dx-gold);border-radius:var(--dx-r-sm);font-size:.82rem;line-height:1.35;padding:12px}
+.dx-doc__ph svg{width:34px;height:34px;stroke:var(--dx-gold)}
+.dx-doc__body{padding:20px 20px 18px;display:flex;flex-direction:column;flex:1}
+.dx-doc__where{font-size:.95rem;color:var(--dx-soft);flex:1}
+.dx-doc__where b{font-weight:500;color:var(--dx-teal)}
+.dx-doc__have{display:flex;align-items:center;gap:10px;font-weight:500;font-size:.92rem;cursor:pointer;padding-top:12px;border-top:1px solid var(--dx-line)}
+.dx-doc__have input{width:22px;height:22px;margin:0;accent-color:var(--dx-teal);cursor:pointer}
+.dx-doc.is-ready{border-color:var(--dx-gold)}
+.dx-check__notes{margin-top:24px;display:grid;gap:12px}
+.dx-note{display:flex;gap:14px;align-items:flex-start;background:rgba(230,205,150,.25);border-radius:var(--dx-r);padding:18px 20px}
+.dx-note svg{flex:none;width:26px;height:26px;stroke:var(--dx-teal);margin-top:2px}
+.dx-note p{margin:0}
+.dx-note strong{font-weight:700}
+@media (min-width:820px){.dx-check__list{grid-template-columns:repeat(3,1fr)}.dx-check__notes{grid-template-columns:1fr 1fr}}
+</style>
+<div class="dx__in">
+  <div class="dx-check__top">
+    <div>
+      <p class="dx__eyebrow">Step 3</p>
+      <h2 id="dx-check-title">Your document checklist</h2>
+      <p class="dx__sub" style="margin:0">Here's what each document looks like and where to find it. Upload everything to your TaxDome portal.</p>
+    </div>
+    <p class="dx-check__count" aria-live="polite"><span data-dx-doc-count>0</span> of <span data-dx-doc-total>3</span> ready</p>
+  </div>
+  <ul class="dx-check__list">
+    <li class="dx-doc">
+      <div class="dx-doc__img">
+        <!-- IMAGE SLOT: replace the placeholder div with
+             <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
+        <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
+          [IMAGE: PRIOR TAX RETURN MOCK-UP]
+        </div>
+      </div>
+      <div class="dx-doc__body">
+        <h3>Prior tax returns</h3>
+        <p class="dx-doc__where"><b>Where to find it:</b> your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
+        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+      </div>
+    </li>
+    <li class="dx-doc">
+      <div class="dx-doc__img">
+        <!-- IMAGE SLOT: replace the placeholder div with
+             <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
+        <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
+          [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+        </div>
+      </div>
+      <div class="dx-doc__body">
+        <h3>Year-to-date profit and loss</h3>
+        <p class="dx-doc__where"><b>Where to find it:</b> run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
+        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+      </div>
+    </li>
+    <li class="dx-doc">
+      <div class="dx-doc__img">
+        <!-- IMAGE SLOT: replace the placeholder div with
+             <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
+        <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          [IMAGE: IRS OR STATE LETTER MOCK-UP]
+        </div>
+      </div>
+      <div class="dx-doc__body">
+        <h3>Any IRS or state letters</h3>
+        <p class="dx-doc__where"><b>Where to find it:</b> notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
+        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+      </div>
+    </li>
+  </ul>
+  <div class="dx-check__notes">
+    <div class="dx-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      <p><strong>Partial uploads are fine.</strong> Upload what you have now and add the rest as you find it.</p>
+    </div>
+    <div class="dx-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 15l9-9 3 3-9 9H6z"/></svg>
+      <p><strong>Books behind?</strong> Upload what you have and note what's missing in the organizer.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('checklist'); if(!root) return;
+  var KEY='dx-next-steps-docs', boxes=root.querySelectorAll('[data-dx-doc]');
+  var count=root.querySelector('[data-dx-doc-count]'); root.querySelector('[data-dx-doc-total]').textContent=boxes.length;
+  var saved=[]; try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){}
+  function update(){
+    var n=0,state=[];
+    boxes.forEach(function(b,i){var li=b.closest('.dx-doc');li.classList.toggle('is-ready',b.checked);if(b.checked)n++;state[i]=b.checked;});
+    count.textContent=n; try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
+  }
+  boxes.forEach(function(b,i){b.checked=!!saved[i];b.addEventListener('change',update);});
+  update();
+})();
+</script>
+</section>

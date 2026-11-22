@@ -1,0 +1,38 @@
+<!-- ===== SECTION 10: FOOTER (#footer) ===== -->
+<footer id="footer" class="dx dx-foot" tabindex="-1" aria-label="Distinct Tax Consulting Group® contact information">
+<style>
+/*BASE*/
+.dx-foot{background:var(--dx-ivory);border-top:1px solid var(--dx-line);padding-bottom:40px}
+.dx-foot__grid{display:grid;gap:30px}
+.dx-foot__sign{font-size:1.05rem}
+.dx-foot__sign .dx-foot__hand{display:block;font-weight:500;font-size:1.5rem;margin-bottom:6px}
+.dx-foot__sign strong{display:block;font-weight:700}
+.dx-foot__sign span{display:block;color:var(--dx-soft)}
+.dx-foot__firm{font-weight:700;font-size:1.1rem;margin-bottom:8px!important}
+.dx-foot address{font-style:normal;margin-bottom:14px}
+.dx-foot__rule{height:2px;width:48px;border-radius:2px;background:var(--dx-gold);margin:0 0 18px}
+.dx-foot__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:36px;padding-top:18px;border-top:1px solid var(--dx-line);font-size:.85rem}
+.dx-foot__bottom p{margin:0}
+@media (min-width:760px){.dx-foot__grid{grid-template-columns:1fr 1fr;gap:48px}}
+</style>
+<div class="dx__in">
+  <div class="dx-foot__grid">
+    <div class="dx-foot__sign">
+      <div class="dx-foot__rule" aria-hidden="true"></div>
+      <span class="dx-foot__hand">Have a distinct day,</span>
+      <strong>Alysha Pruitt Harvey, MAcc, EA</strong>
+      <span>Founder and Managing Partner</span>
+    </div>
+    <div>
+      <p class="dx-foot__firm">Distinct Tax Consulting Group®</p>
+      <address>4751 Best Road, Suite 332<br>Atlanta, GA 30337</address>
+      <p><strong>Questions?</strong> Reply to any of our emails.</p>
+    </div>
+  </div>
+  <div class="dx-foot__bottom">
+    <p>© <span data-dx-year>2026</span> Distinct Tax Consulting Group®. All rights reserved.</p>
+    <p><a class="dx__link" href="#welcome">Back to top ↑</a></p>
+  </div>
+</div>
+<script>(function(){var y=document.querySelector('#footer [data-dx-year]');if(y)y.textContent=new Date().getFullYear();})();</script>
+</footer>
