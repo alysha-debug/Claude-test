@@ -858,7 +858,7 @@ Other anchors you can use: `#steps`, `#organizer`, `#deadline`, `#what-next`, `#
 
 GHL menu labels move between versions. If a name below doesn't match your screen, look for the nearest equivalent.
 
-1. **Open the funnel.** In the Distinct Tax Consulting Group sub-account, go to **Sites → Funnels** and open the funnel that holds the $500 Distinct® Tax Assessment checkout.
+1. **Open the funnel.** In the Distinct Tax Consulting Group® sub-account, go to **Sites → Funnels** and open the funnel that holds the $500 Distinct® Tax Assessment checkout.
 2. **Add the step.** On the **Steps** list, click **+ Add New Step**. Name it `Next Steps` and set the path to `next-steps`, or whatever path you want in the URL.
 3. **Put it right after the checkout.** Drag the new step so it sits directly below the checkout step. If you already have an upsell or order-confirmation step, place it after the last step the buyer sees before they're done.
 4. **Open the builder.** Click **Edit** on the new step and start from a blank page.
