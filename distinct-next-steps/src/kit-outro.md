@@ -11,7 +11,29 @@
 | 7 | `[IMAGE: IRS OR STATE LETTER MOCK-UP]` | Section 5, card 3 | Mock-up image. Alt text: "Sample IRS or state tax notice letter". |
 | 8 | Document list (HTML comment "ALYSHA TO CONFIRM") | Section 5 | Alysha confirms the three documents and their "where to find it" lines. To add a document, copy a `<li class="dx-doc">` block. The counter updates itself. |
 
+**Logo candidates in Canva.** No variant could be confirmed free of the gold "I" at preview size, so please check before you export:
+- The teal knot with a white "DISTINCT" wordmark, stacked over "Distinct Tax Consulting Group", in *DTCG Brand - Letterhead (Doc) - MASTER*. This is the best fit for a light page.
+- The white "DISTINCT" wordmark on a dark band, on page 1 of *DTCG Brand - Business Cards (Print) - 2026*. Use this one only on a dark background.
+
 Image mock-ups work best at a 4:3 ratio, about 1200 × 900 px. Make sure no real client data is visible.
+
+## Please confirm before launch: your Canva designs differ from this brief
+
+The page follows your brief's wording. The designs from Nov 5 onward disagree with it, or don't cover it, in these places:
+
+| # | Topic | Brief / page says | Your Canva designs say | Source |
+|---|---|---|---|---|
+| 1 | Name of the $500 offer | Distinct® Tax Assessment | "Tax Strategy Consultation", $500, or **$250 for real estate professionals** (slide marked IN PROGRESS). The onboarding decks call step 1 the "Distinct Tax and CFO Sales Assessment Call". | Systems Update deck p136; Client Onboarding Master Deck p2 |
+| 2 | Booking order | Pay → upload → review → private booking link by email | "The price is built into the calendar". That reads as paying when booking in GHL. The decks also book calls through portal or newsletter links. | Systems Update deck p136; Master Deck p77 |
+| 3 | Refunds | "Your assessment fee is non-refundable." | No policy stated. Refund requests go to Monday's huddle. | Systems Update deck p59 |
+| 4 | 60-day window and paying again | 60 days, then inactive, pay the fee again | Not mentioned anywhere | none |
+| 5 | Sign-off credentials | Alysha Pruitt Harvey, MAcc, EA, Founder and Managing Partner | "Alysha Harvey, EA, CTS, CTP, CTC – Founder & CEO" | Master Deck p27 |
+| 6 | ® usage | Distinct Tax Consulting Group® and Distinct® everywhere | No ® on Distinct in any design. Footers read "© 2026 DISTINCT TAX CONSULTING GROUP · ALL RIGHTS RESERVED". Only "THE TAX ADVIZHER®" carries ®. | All brand designs |
+| 7 | Email and text for documents | "Never send them by regular email or text." | "Please use your secure portal" for documents, but the decks also list text and email as normal channels | Master Deck p13 |
+| 8 | Organizer opens a section per entity | Stated on page | Not described. The business organizer is "one organizer for 1120S, 1120 and 1065". | Systems Update deck p100 |
+| 9 | Document checklist and videos | Prior returns, YTD P&L, IRS/state letters; two videos | No assessment checklist or videos exist in the designs yet | none |
+
+Available but not added, because your footer brief didn't include them: phone **770-742-9136**, **contact@distincttax.com** and office hours (Master Deck p36). The phone line is moving into GHL with an AI booking agent (Systems Update deck p136).
 
 ## Anchor URLs for the reminder emails
 

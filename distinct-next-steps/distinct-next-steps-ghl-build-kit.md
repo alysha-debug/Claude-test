@@ -9,19 +9,22 @@ Post-payment thank-you step for Distinct Tax Consulting Group®. It sits right a
 
 ## Brand palette in use
 
-Source: Canva, *DTCG Client - The Distinct Experience Guide (Doc) - 2026*.
+Source: your Canva designs from Nov 5, 2026 onward. These are *The Distinct Experience Guide*, *Capability Statement*, *Letterhead MASTER*, *Business Cards 2026*, *Client Roadmap*, *Referral Program deck* and recent DTCG social posts. All eight colors below appear across them. Text is set the way your light designs set it: teal headings over the slate body color.
 
 | Token | Hex | Used for | Contrast |
 |---|---|---|---|
-| Teal (ink) | `#003B42` | Headings, body text, primary buttons | 11.6:1 on cream ✔ |
+| Teal (ink) | `#003B42` | Headings, primary buttons, bold text | 11.6:1 on cream ✔ |
+| Slate (body) | `#3B4F52` | Body and secondary text (Capability Statement body color) | 8.2:1 on cream ✔ |
 | Cream (canvas) | `#FBF8F2` | Page background, button text | Button text on teal 11.6:1 ✔ |
 | Ivory | `#F3EDE1` | Welcome and footer backgrounds, pills | Teal text 10.6:1 ✔ |
-| Gold | `#B18132` | Rules, large step numerals, borders, focus ring | 3.3:1. Used only for decoration and large numerals, never for small text |
+| Gold | `#B18132` | Rules, the italic accent word in headings, large numerals, diamond bullets, borders, focus ring | 3.3:1. Used only at heading size or as decoration, never for small text |
 | Dark gold | `#96691C` | Small uppercase eyebrow labels (on cream and white only) | 4.6:1 on cream ✔ |
 | Champagne | `#E6CD96` | Tinted highlight fills (deadline card, notes) | Teal text 7.9:1 ✔ |
 | White | `#FFFFFF` | Cards and alternating sections | |
 
 Not used: sage `#8FA5A2` fails text contrast on cream (2.5:1), and white text on gold fails (3.5:1). There is no dark theme anywhere.
+
+**Brand motifs carried over:** a short gold rule before labels, one *italic gold accent word* per heading (from your serif headings, set here in Jost Bold Italic), the double hairline inset frame (business cards and decks), gold diamond bullets (Capability Statement), and the tagline *Protect More. Keep More. Build More.*
 
 **Type:** Jost 700 for headings, 500 for subheads and buttons, 400 for body. **Shape:** 18px corners on cards and video frames, pill-shaped buttons.
 
@@ -56,10 +59,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 1: WELCOME (#welcome) ===== -->
 <section id="welcome" class="dx dx-welcome" tabindex="-1" aria-labelledby="dx-welcome-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -67,6 +70,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -87,8 +96,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-ph{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--dx-gold);border-radius:var(--dx-r-sm);background:rgba(230,205,150,.18);color:var(--dx-teal);font:500 .85rem/1.35 'Jost',system-ui,sans-serif;padding:12px}
 .dx-ph--logo{width:220px;min-height:84px}
 .dx-welcome h1{font-size:clamp(2.1rem,8vw,3.6rem);line-height:1.05;max-width:760px;margin-bottom:22px}
-.dx-welcome__note{position:relative;max-width:680px;margin:0 0 30px;padding:22px 22px 20px 24px;background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r)}
-.dx-welcome__note::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:3px;background:var(--dx-gold)}
+.dx-welcome__note{position:relative;max-width:680px;margin:0 0 30px;padding:26px 26px 24px;background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r)}
 .dx-welcome__note p{font-size:1.05rem}
 .dx-welcome__sig{font-weight:500;margin:0!important}
 .dx-welcome__sig span{display:block;font-weight:400;font-size:.9rem;color:var(--dx-soft)}
@@ -101,8 +109,8 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     <div class="dx-ph dx-ph--logo" role="img" aria-label="Distinct Tax Consulting Group® logo">[LOGO]<br>Distinct Tax Consulting Group®</div>
   </div>
   <p class="dx__eyebrow">Distinct® Tax Assessment · Payment received</p>
-  <h1 id="dx-welcome-title">You're in. Here's what happens next.</h1>
-  <div class="dx-welcome__note">
+  <h1 id="dx-welcome-title">You're in. Here's what happens <em>next</em>.</h1>
+  <div class="dx-welcome__note dx__framed">
     <p>Welcome, and thank you for trusting Distinct Tax Consulting Group® with your Distinct® Tax Assessment.</p>
     <p>Here's how we work: before we ever get on a call, our team reviews your documents. That way, our call is spent on what we found and what we can do about it.</p>
     <p class="dx-welcome__sig">Alysha<span>Founder and Managing Partner</span></p>
@@ -121,10 +129,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
 <section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -132,6 +140,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -165,7 +179,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
   <div class="dx-steps__head">
     <div>
       <p class="dx__eyebrow">Your next steps</p>
-      <h2 id="dx-steps-title">Three steps to get ready</h2>
+      <h2 id="dx-steps-title">Three steps to get <em>ready</em></h2>
       <p class="dx__sub" style="margin:0">Work through these in order. Each button takes you to the right spot on this page.</p>
     </div>
     <div class="dx-steps__progress">
@@ -224,10 +238,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 3: WELCOME VIDEO (#welcome-video) ===== -->
 <section id="welcome-video" class="dx dx-vid" tabindex="-1" aria-labelledby="dx-wv-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -235,6 +249,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -262,7 +282,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 </style>
 <div class="dx__in">
   <p class="dx__eyebrow">Step 1</p>
-  <h2 id="dx-wv-title">Watch the welcome video</h2>
+  <h2 id="dx-wv-title">Watch the welcome <em>video</em></h2>
   <p class="dx__sub">Start here, before you set anything up.</p>
   <div class="dx-video">
     <!-- VIDEO EMBED GOES HERE: [WELCOME VIDEO EMBED CODE]
@@ -291,10 +311,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 4: TAXDOME SET-UP VIDEO (#taxdome-video) ===== -->
 <section id="taxdome-video" class="dx dx-vid dx-vid--alt" tabindex="-1" aria-labelledby="dx-tv-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -302,6 +322,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -327,12 +353,16 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-tv__login{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r);padding:22px}
 .dx-tv__login p{margin:0;font-size:1.05rem;font-weight:500}
 .dx-tv__next{margin-top:18px}
+.dx-tv__tips{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.dx-tv__tips li{position:relative;padding-left:22px;font-size:.98rem}
+.dx-tv__tips li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;background:var(--dx-gold);transform:rotate(45deg)}
+@media (min-width:760px){.dx-tv__tips{grid-template-columns:1fr 1fr;gap:10px 28px}}
 @supports not (aspect-ratio:16/9){.dx-video{height:0;padding-top:56.25%}}
 @media (min-width:760px){.dx-tv__login{flex-direction:row;align-items:center;justify-content:space-between}}
 </style>
 <div class="dx__in">
   <p class="dx__eyebrow">Step 2</p>
-  <h2 id="dx-tv-title">How to set up your TaxDome account</h2>
+  <h2 id="dx-tv-title">How to set up your TaxDome <em>account</em></h2>
   <p class="dx__sub">TaxDome is our secure client portal. This walkthrough shows you how to get in.</p>
   <div class="dx-video">
     <!-- VIDEO EMBED GOES HERE: [TAXDOME SET-UP VIDEO EMBED CODE]
@@ -350,6 +380,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     <a class="dx__btn" href="[TAXDOME PORTAL LINK]" target="_blank" rel="noopener">Log in to TaxDome
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="dx__sr">(opens in a new tab)</span></a>
   </div>
+  <ul class="dx-tv__tips">
+    <li><strong>Once you're in:</strong> your to-do list is the first thing you see on Home, and your files live under <strong>Docs</strong>.</li>
+    <li><strong>On your phone?</strong> The TaxDome Client Portal app for Apple and Android has a built-in document scanner.</li>
+  </ul>
   <div class="dx-tv__next"><a class="dx__link" href="#checklist">Next: your document checklist →</a></div>
 </div>
 </section>
@@ -365,10 +399,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
      To add a document, copy one <li class="dx-doc">…</li> block; the counter updates automatically. -->
 <section id="checklist" class="dx dx-check" tabindex="-1" aria-labelledby="dx-check-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -376,6 +410,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -416,7 +456,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
   <div class="dx-check__top">
     <div>
       <p class="dx__eyebrow">Step 3</p>
-      <h2 id="dx-check-title">Your document checklist</h2>
+      <h2 id="dx-check-title">Your document <em>checklist</em></h2>
       <p class="dx__sub" style="margin:0">Here's what each document looks like and where to find it. Upload everything to your TaxDome portal.</p>
     </div>
     <p class="dx-check__count" aria-live="polite"><span data-dx-doc-count>0</span> of <span data-dx-doc-total>3</span> ready</p>
@@ -475,7 +515,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     </div>
     <div class="dx-note">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 15l9-9 3 3-9 9H6z"/></svg>
-      <p><strong>Books behind?</strong> Upload what you have and note what's missing in the organizer.</p>
+      <p><strong>Books behind?</strong> We're a judgment-free firm. Upload what you have and note what's missing in the organizer.</p>
     </div>
   </div>
 </div>
@@ -505,10 +545,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 6: ORGANIZER (#organizer) ===== -->
 <section id="organizer" class="dx dx-org" tabindex="-1" aria-labelledby="dx-org-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -516,6 +556,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -540,6 +586,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-org__count h3{margin-bottom:4px}
 .dx-org__count>p{color:var(--dx-soft);font-size:.95rem}
 .dx-org__kinds{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.dx-org__kinds li::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;background:var(--dx-gold);transform:rotate(45deg)}
 .dx-org__kinds li{padding:6px 14px;border-radius:99px;background:var(--dx-ivory);font-size:.9rem;font-weight:500}
 .dx-org__stepper{display:flex;align-items:center;gap:14px}
 .dx-org__stepper button{width:48px;height:48px;border-radius:50%;border:2px solid var(--dx-teal);background:var(--dx-white);color:var(--dx-teal);font:500 1.5rem/1 'Jost',system-ui,sans-serif;cursor:pointer}
@@ -550,7 +597,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 </style>
 <div class="dx__in">
   <p class="dx__eyebrow">Step 3 · Your organizer</p>
-  <h2 id="dx-org-title">How your organizer works</h2>
+  <h2 id="dx-org-title">How your organizer <em>works</em></h2>
   <p class="dx__sub">You'll find your organizer inside your TaxDome portal.</p>
   <div class="dx-org__grid">
     <ol class="dx-org__flow">
@@ -591,10 +638,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 7: 60-DAY DEADLINE (#deadline) ===== -->
 <section id="deadline" class="dx dx-dead" tabindex="-1" aria-labelledby="dx-dead-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -602,6 +649,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -626,13 +679,13 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 @media (min-width:760px){.dx-dead__card{grid-template-columns:auto 1fr;gap:26px;padding:36px 36px}}
 </style>
 <div class="dx__in">
-  <div class="dx-dead__card" role="note">
+  <div class="dx-dead__card dx__framed" role="note">
     <div class="dx-dead__icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M10 15h4"/></svg>
     </div>
     <div>
       <p class="dx__eyebrow">Important</p>
-      <h2 id="dx-dead-title">You have 60 days to upload your documents</h2>
+      <h2 id="dx-dead-title">You have <em>60 days</em> to upload your documents</h2>
       <p>You have 60 days from your payment date to upload your documents.</p>
       <p>After 60 days, your account goes inactive. To continue, you would pay the consultation fee again at whatever it is that day.</p>
       <p><strong>Your assessment fee is non-refundable.</strong></p>
@@ -650,10 +703,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 8: WHAT HAPPENS NEXT (#what-next) ===== -->
 <section id="what-next" class="dx dx-next" tabindex="-1" aria-labelledby="dx-next-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -661,6 +714,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -692,7 +751,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 </style>
 <div class="dx__in">
   <p class="dx__eyebrow">After you submit</p>
-  <h2 id="dx-next-title">What happens next</h2>
+  <h2 id="dx-next-title">What happens <em>next</em></h2>
   <ol class="dx-next__line">
     <li><span class="dx-next__dot" aria-hidden="true">1</span><h3>Our team reviews your documents</h3><p>Once you submit, our team reviews everything you've uploaded.</p></li>
     <li><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
@@ -710,10 +769,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 9: SECURITY (#security) ===== -->
 <section id="security" class="dx dx-sec" tabindex="-1" aria-labelledby="dx-sec-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -721,6 +780,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -748,7 +813,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
     </div>
     <div>
-      <h2 id="dx-sec-title">Keep your documents secure</h2>
+      <h2 id="dx-sec-title">Keep your documents <em>secure</em></h2>
       <p>For your security, upload tax documents only in TaxDome. Never send them by regular email or text.</p>
     </div>
     <a class="dx__btn" href="[TAXDOME PORTAL LINK]" target="_blank" rel="noopener">Log in to TaxDome<span class="dx__sr">(opens in a new tab)</span></a>
@@ -765,10 +830,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <!-- ===== SECTION 10: FOOTER (#footer) ===== -->
 <footer id="footer" class="dx dx-foot" tabindex="-1" aria-label="Distinct Tax Consulting Group® contact information">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -776,6 +841,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -796,11 +867,13 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-foot__sign .dx-foot__hand{display:block;font-weight:500;font-size:1.5rem;margin-bottom:6px}
 .dx-foot__sign strong{display:block;font-weight:700}
 .dx-foot__sign span{display:block;color:var(--dx-soft)}
-.dx-foot__firm{font-weight:700;font-size:1.1rem;margin-bottom:8px!important}
+.dx-foot__firm{font-weight:700;font-size:1.1rem;color:var(--dx-teal);margin-bottom:8px!important}
 .dx-foot address{font-style:normal;margin-bottom:14px}
 .dx-foot__rule{height:2px;width:48px;border-radius:2px;background:var(--dx-gold);margin:0 0 18px}
 .dx-foot__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:36px;padding-top:18px;border-top:1px solid var(--dx-line);font-size:.85rem}
 .dx-foot__bottom p{margin:0}
+.dx-foot__legal{font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.dx-foot__tag{font-weight:500;font-style:italic;color:var(--dx-teal);margin-top:16px!important}
 @media (min-width:760px){.dx-foot__grid{grid-template-columns:1fr 1fr;gap:48px}}
 </style>
 <div class="dx__in">
@@ -810,15 +883,17 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       <span class="dx-foot__hand">Have a distinct day,</span>
       <strong>Alysha Pruitt Harvey, MAcc, EA</strong>
       <span>Founder and Managing Partner</span>
+      <p class="dx-foot__tag">Protect More. Keep More. Build More.</p>
     </div>
     <div>
       <p class="dx-foot__firm">Distinct Tax Consulting Group®</p>
       <address>4751 Best Road, Suite 332<br>Atlanta, GA 30337</address>
       <p><strong>Questions?</strong> Reply to any of our emails.</p>
+      <p><a class="dx__link" href="https://www.distincttax.com" target="_blank" rel="noopener">www.distincttax.com<span class="dx__sr"> (opens in a new tab)</span></a></p>
     </div>
   </div>
   <div class="dx-foot__bottom">
-    <p>© <span data-dx-year>2026</span> Distinct Tax Consulting Group®. All rights reserved.</p>
+    <p class="dx-foot__legal">© <span data-dx-year>2026</span> Distinct Tax Consulting Group® · All rights reserved</p>
     <p><a class="dx__link" href="#welcome">Back to top ↑</a></p>
   </div>
 </div>
@@ -839,7 +914,29 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 | 7 | `[IMAGE: IRS OR STATE LETTER MOCK-UP]` | Section 5, card 3 | Mock-up image. Alt text: "Sample IRS or state tax notice letter". |
 | 8 | Document list (HTML comment "ALYSHA TO CONFIRM") | Section 5 | Alysha confirms the three documents and their "where to find it" lines. To add a document, copy a `<li class="dx-doc">` block. The counter updates itself. |
 
+**Logo candidates in Canva.** No variant could be confirmed free of the gold "I" at preview size, so please check before you export:
+- The teal knot with a white "DISTINCT" wordmark, stacked over "Distinct Tax Consulting Group", in *DTCG Brand - Letterhead (Doc) - MASTER*. This is the best fit for a light page.
+- The white "DISTINCT" wordmark on a dark band, on page 1 of *DTCG Brand - Business Cards (Print) - 2026*. Use this one only on a dark background.
+
 Image mock-ups work best at a 4:3 ratio, about 1200 × 900 px. Make sure no real client data is visible.
+
+## Please confirm before launch: your Canva designs differ from this brief
+
+The page follows your brief's wording. The designs from Nov 5 onward disagree with it, or don't cover it, in these places:
+
+| # | Topic | Brief / page says | Your Canva designs say | Source |
+|---|---|---|---|---|
+| 1 | Name of the $500 offer | Distinct® Tax Assessment | "Tax Strategy Consultation", $500, or **$250 for real estate professionals** (slide marked IN PROGRESS). The onboarding decks call step 1 the "Distinct Tax and CFO Sales Assessment Call". | Systems Update deck p136; Client Onboarding Master Deck p2 |
+| 2 | Booking order | Pay → upload → review → private booking link by email | "The price is built into the calendar". That reads as paying when booking in GHL. The decks also book calls through portal or newsletter links. | Systems Update deck p136; Master Deck p77 |
+| 3 | Refunds | "Your assessment fee is non-refundable." | No policy stated. Refund requests go to Monday's huddle. | Systems Update deck p59 |
+| 4 | 60-day window and paying again | 60 days, then inactive, pay the fee again | Not mentioned anywhere | none |
+| 5 | Sign-off credentials | Alysha Pruitt Harvey, MAcc, EA, Founder and Managing Partner | "Alysha Harvey, EA, CTS, CTP, CTC – Founder & CEO" | Master Deck p27 |
+| 6 | ® usage | Distinct Tax Consulting Group® and Distinct® everywhere | No ® on Distinct in any design. Footers read "© 2026 DISTINCT TAX CONSULTING GROUP · ALL RIGHTS RESERVED". Only "THE TAX ADVIZHER®" carries ®. | All brand designs |
+| 7 | Email and text for documents | "Never send them by regular email or text." | "Please use your secure portal" for documents, but the decks also list text and email as normal channels | Master Deck p13 |
+| 8 | Organizer opens a section per entity | Stated on page | Not described. The business organizer is "one organizer for 1120S, 1120 and 1065". | Systems Update deck p100 |
+| 9 | Document checklist and videos | Prior returns, YTD P&L, IRS/state letters; two videos | No assessment checklist or videos exist in the designs yet | none |
+
+Available but not added, because your footer brief didn't include them: phone **770-742-9136**, **contact@distincttax.com** and office hours (Master Deck p36). The phone line is moving into GHL with an AI booking agent (Systems Update deck p136).
 
 ## Anchor URLs for the reminder emails
 

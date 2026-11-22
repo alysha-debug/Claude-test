@@ -1,10 +1,10 @@
 <!-- ===== SECTION 6: ORGANIZER (#organizer) ===== -->
 <section id="organizer" class="dx dx-org" tabindex="-1" aria-labelledby="dx-org-title">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
-/* Distinct brand tokens (from The Distinct Experience Guide, 2026) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-soft:rgba(0,59,66,.80);--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-teal);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
+.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
+  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{max-width:980px;margin:0 auto}
@@ -12,6 +12,12 @@
 .dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
 .dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
+.dx strong{color:var(--dx-teal)}
+/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
+.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
@@ -36,6 +42,7 @@
 .dx-org__count h3{margin-bottom:4px}
 .dx-org__count>p{color:var(--dx-soft);font-size:.95rem}
 .dx-org__kinds{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.dx-org__kinds li::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;background:var(--dx-gold);transform:rotate(45deg)}
 .dx-org__kinds li{padding:6px 14px;border-radius:99px;background:var(--dx-ivory);font-size:.9rem;font-weight:500}
 .dx-org__stepper{display:flex;align-items:center;gap:14px}
 .dx-org__stepper button{width:48px;height:48px;border-radius:50%;border:2px solid var(--dx-teal);background:var(--dx-white);color:var(--dx-teal);font:500 1.5rem/1 'Jost',system-ui,sans-serif;cursor:pointer}
@@ -46,7 +53,7 @@
 </style>
 <div class="dx__in">
   <p class="dx__eyebrow">Step 3 · Your organizer</p>
-  <h2 id="dx-org-title">How your organizer works</h2>
+  <h2 id="dx-org-title">How your organizer <em>works</em></h2>
   <p class="dx__sub">You'll find your organizer inside your TaxDome portal.</p>
   <div class="dx-org__grid">
     <ol class="dx-org__flow">
