@@ -3,6 +3,7 @@ import pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 base = (SRC / "base.css").read_text().strip()
+motion = (SRC / "motion.js").read_text().strip()
 sections = sorted((SRC / "sections").glob("*.html"))
 
 HEAD_BLOCK = """<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: step Settings > Tracking Code > Head) -->
@@ -32,7 +33,7 @@ HEAD_BLOCK = """<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: s
 blocks = []
 outdir = ROOT / "ghl-blocks"; outdir.mkdir(exist_ok=True)
 for f in sections:
-    code = f.read_text().replace("/*BASE*/", base).strip()
+    code = f.read_text().replace("/*BASE*/", base).replace("/*MOTION*/", motion).strip()
     (outdir / f.name).write_text(code + "\n")
     title = re.search(r"SECTION (\d+): ([^(]+)\((#[\w-]+)\)", code)
     blocks.append((f.name, title.group(1), title.group(2).strip(), title.group(3), code))
@@ -55,12 +56,12 @@ preview = f"""<!doctype html>
 (ROOT / "index.html").write_text(preview)
 
 notes = {
- "1": "Section: full width, background #003B42, padding 0. Dark-teal hero. This is the only H1 on the page.",
- "2": "Section: full width, background #FFFFFF, padding 0. Teal step cards. Also contains the floating progress pill that appears at the bottom of the screen once visitors scroll past the steps.",
+ "1": "Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and the gold keyword ribbon (with Pause motion button). This is the only H1 on the page.",
+ "2": "Section: full width, background #FFFFFF, padding 0. Teal flip cards (tap to turn over).",
  "3": "Section: full width, background #003B42, padding 0. When the video is ready, swap the placeholder for the embed (see the comment in the code).",
  "4": "Section: full width, background #FFFFFF, padding 0. Leave href=\"[TAXDOME PORTAL LINK]\" until you have the TaxDome login URL.",
- "5": "Section: full width, background #F2F6F6, padding 0. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list.",
- "6": "Section: full width, background #003B42, padding 0. The entity counter is a helper only and saves nothing.",
+ "5": "Section: full width, background #F2F6F6, padding 0. Flip cards: front shows the mock-up, back shows where to find it. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list.",
+ "6": "Section: full width, background #003B42, padding 0. Includes the turning-words card with its Pause motion button.",
  "7": "Section: full width, background #FFFFFF, padding 0. Static text only: no countdown.",
  "8": "Section: full width, background #01262B, padding 0.",
  "9": "Section: full width, background #FFFFFF, padding 0. This block repeats the [TAXDOME PORTAL LINK] button.",

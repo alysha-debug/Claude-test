@@ -33,13 +33,20 @@ Colors come from your Canva designs from Nov 5, 2026 onward: Business Cards, Cap
 - gold diamond bullets
 - the tagline *Protect More. Keep More. Build More.*
 
-**Moving parts:**
-- step cards that check off, with a progress ring
-- a floating progress pill that always links to your next unfinished step
-- a document checklist counter
-- an entity counter in the organizer section
-- a gentle scroll-in animation (turned off for visitors who reduce motion)
-- no countdown timers
+**Moving parts (no checkboxes, nothing to save):**
+- **Turning words:** the hero promise flips through *Highly valued. → Financially redefined. → Peace of mind obtained.* The organizer card cycles *main business → side businesses → rentals → nonprofits.*
+- **Keyword ribbon:** a gold band under the hero scrolls *Highly valued · Financially redefined · Peace of mind obtained · Protect more · Keep more · Build more · Judgment-free · Clarity · Confidence · Legacy.*
+- **Flip cards:** the 3 step cards and 3 document cards turn over on tap or click. The first card gives a small "peek" turn when it comes into view, to show it flips.
+- **Scroll-in:** sections slide in gently as visitors scroll.
+- **Accessibility:** moving words and the ribbon have a **Pause motion** button and stop on hover. Visitors who turn on "reduce motion" see the words written out, with nothing moving. Nothing strobes, and there are no countdown timers.
+
+**Distinct® keywords on the page and where they come from:**
+- **The Distinct® Experience:** Client Onboarding Master Deck p1 and Experience Guide
+- **Highly valued. Financially redefined. Peace of mind obtained.:** Experience Guide p1/p3, Master Deck p16
+- **Protect More. Keep More. Build More.:** Systems Update deck
+- **Judgment-free:** Master Deck p5
+- **Clarity · Confidence · Legacy:** DTCG social post, Nov 26
+- **Have a distinct day:** your sign-off
 
 **Type:** Jost 700 for headings (700 italic for the accent word), 500 for subheads and buttons, 400 for body. **Shape:** 20px corners on cards and video frames, pill-shaped buttons.
 
@@ -81,7 +88,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 
 ## SECTION 1: Welcome (`#welcome`)
 
-**GHL build note:** Section: full width, background #003B42, padding 0. Dark-teal hero. This is the only H1 on the page. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/01-welcome.html`.
+**GHL build note:** Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and the gold keyword ribbon (with Pause motion button). This is the only H1 on the page. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/01-welcome.html`.
 
 ```html
 <!-- ===== SECTION 1: WELCOME (#welcome) ===== -->
@@ -139,6 +146,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-hero{padding-top:28px;padding-bottom:72px}
 .dx-hero .dx__rings{right:-260px;top:-140px}
 .dx-hero .dx__rings--b{left:-320px;right:auto;top:auto;bottom:-360px;width:640px;height:640px}
@@ -147,7 +197,13 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-hero__logo img{max-width:230px;height:auto;display:block}
 .dx-ph--logo{display:flex;align-items:center;justify-content:center;text-align:center;width:230px;min-height:88px;padding:12px;border:2px dashed var(--dx-champ);border-radius:var(--dx-r-sm);color:var(--dx-champ);font:500 .85rem/1.35 'Jost',system-ui,sans-serif}
 .dx-hero__grid{display:grid;gap:34px;align-items:end}
-.dx-hero h1{font-size:clamp(2.6rem,11vw,5.2rem);line-height:.98;letter-spacing:-.03em;margin-bottom:24px}
+.dx-hero h1{font-size:clamp(2.6rem,11vw,5.2rem);line-height:.98;letter-spacing:-.03em;margin-bottom:22px}
+.dx-hero{padding-bottom:0!important}
+.dx-hero__promise{display:block;margin:30px 0 22px;font-weight:700;font-style:italic;font-size:clamp(1.5rem,5.6vw,2.4rem);line-height:1.15;color:var(--dx-champ)}
+.dx-hero__promise small{display:block;font-style:normal;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-mist);margin-bottom:6px}
+.dx-hero__ribbon{margin:64px -20px 0;position:relative;z-index:1}
+@media (min-width:640px){.dx-hero__ribbon{margin-left:-32px;margin-right:-32px}}
+.dx-hero__ribbon .dx__pause{position:absolute;right:24px;top:-50px;color:var(--dx-champ)}
 .dx-hero__lead{font-size:1.15rem;color:var(--dx-ivory);max-width:560px;margin-bottom:30px}
 .dx-hero__actions{display:flex;flex-wrap:wrap;gap:12px}
 .dx-hero__note{position:relative;background:rgba(243,237,225,.06);border:1px solid rgba(230,205,150,.3);border-radius:var(--dx-r);padding:28px 26px 24px;backdrop-filter:blur(2px)}
@@ -157,7 +213,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-hero__sig{display:flex;align-items:center;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(230,205,150,.25)}
 .dx-hero__sig b{display:block;color:var(--dx-champ);font-weight:500;font-size:1.05rem}
 .dx-hero__sig span{display:block;font-size:.88rem;color:var(--dx-mist)}
-@media (min-width:900px){.dx-hero{padding-bottom:110px}.dx-hero__grid{grid-template-columns:1.25fr .9fr;gap:56px}}
+@media (min-width:900px){.dx-hero__ribbon{margin-top:96px}.dx-hero__grid{grid-template-columns:1.25fr .9fr;gap:56px}}
 </style>
 <div class="dx-hero__frame" aria-hidden="true"></div>
 <div class="dx__rings" aria-hidden="true"></div>
@@ -171,8 +227,10 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
   </div>
   <div class="dx-hero__grid">
     <div data-reveal>
-      <p class="dx__eyebrow">Distinct® Tax Assessment · Payment received</p>
+      <p class="dx__eyebrow">Payment received · Your Distinct® Experience begins</p>
       <h1 id="dx-welcome-title">You're in. Here's what happens <em>next.</em></h1>
+      <p class="dx-hero__promise"><small>The Distinct® Experience</small>
+        <span class="dx-rot" data-rot="2600"><span class="dx__sr">Highly valued. Financially redefined. Peace of mind obtained.</span><span class="dx-rot__win" aria-hidden="true"><span class="dx-rot__w">Highly valued.</span><span class="dx-rot__w">Financially redefined.</span><span class="dx-rot__w">Peace of mind obtained.</span></span></span></p>
       <p class="dx-hero__lead">Three steps get you ready for your assessment call. Start with step one below.</p>
       <div class="dx-hero__actions">
         <a class="dx__btn dx__btn--gold" href="#steps">See your 3 steps
@@ -188,16 +246,72 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     </div>
   </div>
 </div>
+<div class="dx-hero__ribbon">
+  <button type="button" class="dx__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
+  <div class="dx-ribbon" role="img" aria-label="Highly valued. Financially redefined. Peace of mind obtained. Protect more. Keep more. Build more. Judgment-free. Clarity. Confidence. Legacy.">
+    <div class="dx-ribbon__track" aria-hidden="true">
+      <span>Highly valued <i></i> Financially redefined <i></i> <em>Peace of mind obtained</em> <i></i> Protect more <i></i> Keep more <i></i> Build more <i></i> Judgment-free <i></i> Clarity <i></i> Confidence <i></i> Legacy <i></i></span>
+      <span>Highly valued <i></i> Financially redefined <i></i> <em>Peace of mind obtained</em> <i></i> Protect more <i></i> Keep more <i></i> Build more <i></i> Judgment-free <i></i> Clarity <i></i> Confidence <i></i> Legacy <i></i></span>
+    </div>
+  </div>
+</div>
+<script>
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
+</script>
 </section>
 ```
 
 ## SECTION 2: Your 3 Steps (`#steps`)
 
-**GHL build note:** Section: full width, background #FFFFFF, padding 0. Teal step cards. Also contains the floating progress pill that appears at the bottom of the screen once visitors scroll past the steps. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/02-steps.html`.
+**GHL build note:** Section: full width, background #FFFFFF, padding 0. Teal flip cards (tap to turn over). Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/02-steps.html`.
 
 ```html
 <!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
-<!-- Includes the floating progress pill (bottom of screen) that follows visitors down the page. -->
+<!-- Flip cards: tap/click (or Enter/Space on the flip button) to turn a card over. -->
 <section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
@@ -252,106 +366,163 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-.dx-steps__head{display:grid;gap:20px;margin-bottom:34px}
-.dx-steps__meter{display:flex;align-items:center;gap:16px;background:var(--dx-tint);border-radius:999px;padding:10px 18px 10px 10px;max-width:420px}
-.dx-steps__ring{--p:0;width:52px;height:52px;flex:none;border-radius:50%;background:conic-gradient(var(--dx-gold) calc(var(--p)*1%),rgba(0,59,66,.12) 0);display:grid;place-items:center;transition:--p .5s}
-.dx-steps__ring span{width:40px;height:40px;border-radius:50%;background:var(--dx-white);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);font-size:.95rem}
-.dx-steps__meter p{margin:0;font-weight:500;color:var(--dx-teal)}
-.dx-steps__list{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
-.dx-step{position:relative;display:flex;flex-direction:column;background:var(--dx-grad);border-radius:var(--dx-r);padding:30px 24px 24px;color:var(--dx-mist);overflow:hidden;box-shadow:0 24px 50px -30px rgba(1,38,43,.8);transition:transform .25s ease}
-.dx-step:hover{transform:translateY(-3px)}
-.dx-step::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.25);border-radius:15px;pointer-events:none}
-.dx-step__num{font-weight:700;font-size:4.2rem;line-height:.85;letter-spacing:-.04em;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
-.dx-step strong{color:var(--dx-champ)}
-.dx-step h3{color:var(--dx-ivory)!important;font-size:1.3rem}
-.dx-step p{flex:1;margin-bottom:22px}
-.dx-step__done{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.92rem;font-weight:500;color:var(--dx-ivory);cursor:pointer}
-.dx-step__done input{width:22px;height:22px;margin:0;accent-color:var(--dx-champ);cursor:pointer}
-.dx-step .dx__btn{position:relative;z-index:1}
-.dx-step__badge{position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:all .3s ease}
-.dx-step__badge svg{width:18px;height:18px;stroke:var(--dx-teal)}
-.dx-step.is-done .dx-step__badge{opacity:1;transform:none}
-.dx-step.is-done{box-shadow:0 0 0 2px var(--dx-champ),0 24px 50px -30px rgba(1,38,43,.8)}
-/* Floating progress pill */
-.dx-pill{position:fixed;z-index:9999;left:50%;bottom:14px;transform:translate(-50%,140%);display:flex;align-items:center;gap:12px;max-width:calc(100% - 24px);padding:8px 8px 8px 16px;border-radius:999px;background:var(--dx-deep);border:1px solid rgba(230,205,150,.4);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);font:500 .9rem/1.2 'Jost',system-ui,sans-serif;color:var(--dx-ivory);transition:transform .35s ease}
-.dx-pill.is-on{transform:translate(-50%,0)}
-.dx-pill__dots{display:flex;gap:6px}
-.dx-pill__dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--dx-champ)}
-.dx-pill__dots i.on{background:var(--dx-champ)}
-.dx-pill a{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border-radius:999px;background:var(--dx-goldgrad);color:var(--dx-teal)!important;font-weight:700;text-decoration:none!important;white-space:nowrap}
-.dx-pill a:focus-visible{outline:3px solid var(--dx-champ);outline-offset:3px}
-@media (max-width:420px){.dx-pill__label{display:none}}
-@media (min-width:860px){.dx-steps__head{grid-template-columns:1fr auto;align-items:end}.dx-steps__list{grid-template-columns:repeat(3,1fr)}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
+.dx-steps__head{margin-bottom:34px}
+.dx-steps .dx-flip__face{position:relative;display:flex;flex-direction:column;min-height:330px;padding:30px 26px 24px}
+.dx-steps .dx-flip__face::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.28);border-radius:15px;pointer-events:none}
+.dx-steps .dx-flip__front{background:var(--dx-grad);color:var(--dx-mist);box-shadow:0 30px 60px -34px rgba(1,38,43,.85)}
+.dx-steps .dx-flip__back{background:var(--dx-deep);color:var(--dx-mist);box-shadow:0 0 0 2px var(--dx-champ),0 30px 60px -34px rgba(1,38,43,.85)}
+.dx-step__num{font-weight:700;font-size:5.4rem;line-height:.82;letter-spacing:-.05em;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:auto}
+.dx-steps h3{color:var(--dx-ivory)!important;font-size:1.4rem;line-height:1.25;margin:26px 0 4px}
+.dx-steps .dx-flip__btn{color:var(--dx-champ);position:relative;z-index:1}
+.dx-steps .dx-flip__front .dx-flip__btn{margin-top:18px}
+.dx-step__label{font-weight:500;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dx-champ);margin-bottom:14px}
+.dx-steps .dx-flip__back p{color:var(--dx-ivory);font-size:1.08rem;margin-bottom:22px}
+.dx-steps .dx-flip__back .dx__btn{position:relative;z-index:1;margin-bottom:6px}
+.dx-steps .dx-flip:hover .dx-flip__front{box-shadow:0 0 0 1px var(--dx-champ),0 36px 70px -34px rgba(1,38,43,.9)}
 </style>
 <div class="dx__in">
   <div class="dx-steps__head" data-reveal>
-    <div>
-      <p class="dx__eyebrow">Your next steps</p>
-      <h2 id="dx-steps-title">Three steps to get <em>ready.</em></h2>
-      <p class="dx__sub" style="margin:0">Work through these in order. Each button takes you to the right spot on this page.</p>
-    </div>
-    <div class="dx-steps__meter">
-      <div class="dx-steps__ring" data-dx-ring aria-hidden="true"><span data-dx-steps-count-ring>0</span></div>
-      <p aria-live="polite"><span data-dx-steps-count>0</span> of 3 steps done</p>
-    </div>
+    <p class="dx__eyebrow">Your Distinct® next steps</p>
+    <h2 id="dx-steps-title">Three steps to get <em>ready.</em></h2>
+    <p class="dx__sub" style="margin:0">Tap a card to flip it. Each one takes you to the right spot on this page.</p>
   </div>
-  <ol class="dx-steps__list">
-    <li class="dx-step" data-dx-step="1" data-dx-target="#welcome-video" data-dx-label="Watch the welcome video" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">01</span>
-      <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
-      <p>A short welcome from our team before you get started.</p>
-      <a class="dx__btn dx__btn--gold" href="#welcome-video">Go to step 1</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+  <ol class="dx-flips dx-flips--3">
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">01</span>
+          <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 1</span>
+          <p>A short welcome from our team before you get started.</p>
+          <a class="dx__btn dx__btn--gold" href="#welcome-video">Go to step 1</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
-    <li class="dx-step" data-dx-step="2" data-dx-target="#taxdome-video" data-dx-label="Set up TaxDome" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">02</span>
-      <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
-      <p>Your portal is where you'll complete your organizer and upload your documents.</p>
-      <a class="dx__btn dx__btn--gold" href="#taxdome-video">Go to step 2</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">02</span>
+          <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 2</span>
+          <p>Your portal is where you'll complete your organizer and upload your documents.</p>
+          <a class="dx__btn dx__btn--gold" href="#taxdome-video">Go to step 2</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
-    <li class="dx-step" data-dx-step="3" data-dx-target="#checklist" data-dx-label="Organizer + documents" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">03</span>
-      <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
-      <p>See exactly what to gather, what it looks like and where to find it.</p>
-      <a class="dx__btn dx__btn--gold" href="#checklist">Go to step 3</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">03</span>
+          <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 3</span>
+          <p>See exactly what to gather, what it looks like and where to find it.</p>
+          <a class="dx__btn dx__btn--gold" href="#checklist">Go to step 3</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
   </ol>
 </div>
-<nav class="dx-pill" aria-label="Your progress" data-dx-pill>
-  <span class="dx-pill__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-  <span class="dx-pill__label" data-dx-pill-label>0 of 3 done</span>
-  <a href="#welcome-video" data-dx-pill-link>Next: Watch the welcome video</a>
-</nav>
 <script>
-(function(){
-  var root=document.getElementById('steps'); if(!root) return;
-  var KEY='dx-next-steps-progress', items=root.querySelectorAll('[data-dx-step]');
-  var count=root.querySelector('[data-dx-steps-count]'), ringN=root.querySelector('[data-dx-steps-count-ring]'), ring=root.querySelector('[data-dx-ring]');
-  var pill=root.querySelector('[data-dx-pill]'), dots=pill.querySelectorAll('i'), pLabel=pill.querySelector('[data-dx-pill-label]'), pLink=pill.querySelector('[data-dx-pill-link]');
-  var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
-  function update(){
-    var n=0,next=null;
-    items.forEach(function(li,i){var cb=li.querySelector('[data-dx-step-check]');li.classList.toggle('is-done',cb.checked);dots[i].classList.toggle('on',cb.checked);if(cb.checked)n++;else if(!next)next=li;saved[li.getAttribute('data-dx-step')]=cb.checked;});
-    count.textContent=n; ringN.textContent=n; ring.style.setProperty('--p',Math.round(n/items.length*100));
-    pLabel.textContent=n+' of 3 done';
-    if(next){pLink.href=next.getAttribute('data-dx-target');pLink.textContent='Next: '+next.getAttribute('data-dx-label');}
-    else{pLink.href='#what-next';pLink.textContent='All set: what happens next';}
-    try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
-  }
-  items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');cb.checked=!!saved[li.getAttribute('data-dx-step')];cb.addEventListener('change',update);});
-  update();
-  function onScroll(){
-    var top=root.getBoundingClientRect().top, foot=document.getElementById('footer');
-    var footIn=foot?foot.getBoundingClientRect().top<window.innerHeight:false;
-    pill.classList.toggle('is-on',top<-200&&!footIn);
-  }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-})();
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
 </script>
 </section>
 ```
@@ -416,6 +587,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-vid .dx__rings{left:-300px;top:40%}
 .dx-vid__grid{display:grid;gap:30px;align-items:center}
 .dx-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--dx-r);overflow:hidden;background:var(--dx-deep);box-shadow:0 0 0 1px rgba(230,205,150,.45),0 0 0 8px rgba(230,205,150,.08),0 40px 70px -30px rgba(0,0,0,.7)}
@@ -434,7 +648,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <div class="dx__rings" aria-hidden="true"></div>
 <div class="dx__in dx-vid__grid">
   <div data-reveal>
-    <p class="dx__eyebrow">Step 1</p>
+    <p class="dx__eyebrow">Step 1 · Your Distinct® welcome</p>
     <h2 id="dx-wv-title">Watch the welcome <em>video.</em></h2>
     <p class="dx__sub">Start here, before you set anything up.</p>
     <div class="dx-vid__nav">
@@ -517,6 +731,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-tv__grid{display:grid;gap:30px;align-items:center}
 .dx-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--dx-r);overflow:hidden;background:var(--dx-grad);box-shadow:0 0 0 1px rgba(177,129,50,.5),0 0 0 8px rgba(0,59,66,.06),0 40px 70px -34px rgba(1,38,43,.7)}
 .dx-video iframe,.dx-video video{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -550,7 +807,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       </div>
     </div>
     <div data-reveal>
-      <p class="dx__eyebrow">Step 2</p>
+      <p class="dx__eyebrow">Step 2 · Your secure portal</p>
       <h2 id="dx-tv-title">How to set up your TaxDome <em>account.</em></h2>
       <p class="dx__sub">TaxDome is our secure client portal. This walkthrough shows you how to get in.</p>
       <ul class="dx-tv__tips">
@@ -571,12 +828,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 
 ## SECTION 5: Document Checklist (`#checklist`)
 
-**GHL build note:** Section: full width, background #F2F6F6, padding 0. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/05-checklist.html`.
+**GHL build note:** Section: full width, background #F2F6F6, padding 0. Flip cards: front shows the mock-up, back shows where to find it. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/05-checklist.html`.
 
 ```html
 <!-- ===== SECTION 5: DOCUMENT CHECKLIST (#checklist) ===== -->
 <!-- ALYSHA TO CONFIRM: starting list is prior tax returns, year-to-date P&L, IRS/state letters.
-     To add a document, copy one <li class="dx-doc">…</li> block; the counter updates automatically. -->
+     To add a document, copy one <li class="dx-flip dx-doc">…</li> block. Cards flip to show where to find each document. -->
 <section id="checklist" class="dx dx--tint dx-check" tabindex="-1" aria-labelledby="dx-check-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
@@ -631,87 +888,153 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-.dx-check__top{display:grid;gap:20px;margin-bottom:34px}
-.dx-check__count{display:flex;align-items:center;gap:14px;align-self:end;justify-self:start;margin:0;padding:12px 20px;border-radius:999px;background:var(--dx-teal);color:var(--dx-ivory);font-weight:500}
-.dx-check__count b{font-size:1.5rem;color:var(--dx-champ);font-weight:700}
-.dx-check__list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
-.dx-doc{display:flex;flex-direction:column;background:var(--dx-white);border-radius:var(--dx-r);overflow:hidden;box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6);transition:box-shadow .25s ease,transform .25s ease}
-.dx-doc:hover{transform:translateY(-3px)}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
+.dx-check__top{margin-bottom:34px}
+.dx-doc .dx-flip__front{display:flex;flex-direction:column;background:var(--dx-white);box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc:hover .dx-flip__front{box-shadow:0 0 0 2px var(--dx-gold),0 30px 56px -36px rgba(1,38,43,.7)}
 .dx-doc__img{position:relative;aspect-ratio:4/3;background:var(--dx-grad)}
 .dx-doc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dx-doc__ph{position:absolute;inset:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;border:1.5px dashed rgba(230,205,150,.55);border-radius:var(--dx-r-sm);font-size:.8rem;line-height:1.35;padding:12px;color:var(--dx-mist)}
 .dx-doc__ph svg{width:40px;height:40px;stroke:var(--dx-champ)}
-.dx-doc__tag{position:absolute;left:16px;bottom:-16px;z-index:1;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
-.dx-doc__body{padding:28px 22px 18px;display:flex;flex-direction:column;flex:1}
-.dx-doc__where{font-size:.96rem;flex:1}
-.dx-doc__where b{font-weight:500;color:var(--dx-teal)}
-.dx-doc__have{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--dx-teal);cursor:pointer;padding-top:14px;border-top:1px solid rgba(0,59,66,.12)}
-.dx-doc__have input{width:22px;height:22px;margin:0;accent-color:var(--dx-teal);cursor:pointer}
-.dx-doc.is-ready{box-shadow:0 0 0 2px var(--dx-gold),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc__tag{position:absolute;left:16px;bottom:-18px;z-index:1;width:42px;height:42px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
+.dx-doc__body{display:flex;flex-direction:column;flex:1;padding:32px 22px 20px}
+.dx-doc .dx-flip__front .dx-flip__btn{color:var(--dx-teal);font-weight:700}
+.dx-doc .dx-flip__back{position:relative;display:flex;flex-direction:column;padding:34px 26px 24px;background:var(--dx-grad);color:var(--dx-ivory);box-shadow:0 0 0 2px var(--dx-champ),0 26px 50px -36px rgba(1,38,43,.7)}
+.dx-doc .dx-flip__back::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.28);border-radius:15px;pointer-events:none}
+.dx-doc__label{font-weight:500;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dx-champ);margin-bottom:12px}
+.dx-doc .dx-flip__back h3{color:var(--dx-ivory)}
+.dx-doc .dx-flip__back p{font-size:1.08rem;margin:10px 0 18px}
+.dx-doc .dx-flip__back .dx-flip__btn{color:var(--dx-champ);position:relative;z-index:1}
 .dx-check__notes{margin-top:26px;display:grid;gap:14px}
 .dx-note{display:flex;gap:16px;align-items:flex-start;background:var(--dx-grad);color:var(--dx-mist);border-radius:var(--dx-r);padding:22px 24px}
 .dx-note__ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center}
 .dx-note__ic svg{width:20px;height:20px;stroke:var(--dx-teal)}
 .dx-note p{margin:0}
 .dx-note strong{color:var(--dx-champ)}
-@media (min-width:860px){.dx-check__top{grid-template-columns:1fr auto}.dx-check__count{justify-self:end}.dx-check__list{grid-template-columns:repeat(3,1fr)}.dx-check__notes{grid-template-columns:1fr 1fr}}
+@media (min-width:860px){.dx-check__notes{grid-template-columns:1fr 1fr}}
 </style>
 <div class="dx__in">
   <div class="dx-check__top" data-reveal>
-    <div>
-      <p class="dx__eyebrow">Step 3</p>
-      <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
-      <p class="dx__sub" style="margin:0">Here's what each document looks like and where to find it. Upload everything to your TaxDome portal.</p>
-    </div>
-    <p class="dx-check__count" aria-live="polite"><b data-dx-doc-count>0</b> of <span data-dx-doc-total>3</span> ready</p>
+    <p class="dx__eyebrow">Step 3 · Judgment-free</p>
+    <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
+    <p class="dx__sub" style="margin:0">Here's what each document looks like. Flip a card to see where to find it, then upload everything to your TaxDome portal.</p>
   </div>
-  <ul class="dx-check__list">
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
-          [IMAGE: PRIOR TAX RETURN MOCK-UP]
+  <ul class="dx-flips dx-flips--3">
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
+              [IMAGE: PRIOR TAX RETURN MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">1</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Prior tax returns</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">1</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Prior tax returns</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Prior tax returns</h3>
+          <p>Your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
-          [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
+              [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">2</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Year-to-date profit and loss</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">2</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Year-to-date profit and loss</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Year-to-date profit and loss</h3>
+          <p>Run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          [IMAGE: IRS OR STATE LETTER MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              [IMAGE: IRS OR STATE LETTER MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">3</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Any IRS or state letters</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">3</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Any IRS or state letters</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Any IRS or state letters</h3>
+          <p>Notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
   </ul>
@@ -727,26 +1050,58 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('checklist'); if(!root) return;
-  var KEY='dx-next-steps-docs', boxes=root.querySelectorAll('[data-dx-doc]');
-  var count=root.querySelector('[data-dx-doc-count]'); root.querySelector('[data-dx-doc-total]').textContent=boxes.length;
-  var saved=[]; try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){}
-  function update(){
-    var n=0,state=[];
-    boxes.forEach(function(b,i){b.closest('.dx-doc').classList.toggle('is-ready',b.checked);if(b.checked)n++;state[i]=b.checked;});
-    count.textContent=n; try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
-  }
-  boxes.forEach(function(b,i){b.checked=!!saved[i];b.addEventListener('change',update);});
-  update();
-})();
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
 </script>
 </section>
 ```
 
 ## SECTION 6: Organizer (`#organizer`)
 
-**GHL build note:** Section: full width, background #003B42, padding 0. The entity counter is a helper only and saves nothing. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/06-organizer.html`.
+**GHL build note:** Section: full width, background #003B42, padding 0. Includes the turning-words card with its Pause motion button. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/06-organizer.html`.
 
 ```html
 <!-- ===== SECTION 6: ORGANIZER (#organizer) ===== -->
@@ -804,26 +1159,61 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-org .dx__rings{right:-280px;bottom:-300px}
 .dx-org__grid{display:grid;gap:26px;margin-top:30px}
 .dx-org__flow{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .dx-org__flow li{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:var(--dx-r);background:rgba(243,237,225,.06);border:1px solid rgba(230,205,150,.25)}
 .dx-org__flow b{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);color:var(--dx-teal);font-weight:700}
 .dx-org__flow p{margin:0;color:var(--dx-ivory);font-size:1.05rem}
-.dx-org__count{position:relative;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:30px 26px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
-.dx-org__count h3{color:var(--dx-teal)!important;margin-bottom:4px}
-.dx-org__count>p{font-size:.98rem}
-.dx-org__kinds{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.dx-org__kinds li{padding:7px 14px;border-radius:99px;background:var(--dx-tint);font-size:.9rem;font-weight:500;color:var(--dx-teal)}
-.dx-org__kinds li::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;background:var(--dx-gold);transform:rotate(45deg)}
-.dx-org__stepper{display:flex;align-items:center;gap:16px}
-.dx-org__stepper button{width:52px;height:52px;border-radius:50%;border:0;background:var(--dx-teal);color:var(--dx-ivory);font:500 1.6rem/1 'Jost',system-ui,sans-serif;cursor:pointer;transition:transform .15s ease}
-.dx-org__stepper button:active{transform:scale(.92)}
-.dx-org__stepper button:disabled{opacity:.35;cursor:not-allowed}
-.dx-org__n{min-width:70px;text-align:center;font-weight:700;font-size:3rem;line-height:1;color:var(--dx-teal)}
-.dx-org__secs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;padding:0;list-style:none}
-.dx-org__secs li{height:10px;flex:0 0 34px;border-radius:99px;background:var(--dx-goldgrad)}
-.dx-org__result{margin:12px 0 0!important;font-weight:500;color:var(--dx-teal)}
+.dx-org__count{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:280px;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:34px 28px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
+.dx-org__count h3{color:var(--dx-teal)!important;font-size:.8rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+.dx-org__say{font-weight:700;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.15;color:var(--dx-teal);margin:0 0 18px!important}
+.dx-org__say .dx-rot__w{color:var(--dx-gold);font-style:italic}
+.dx-org__count p{margin:0}
+.dx-org__count .dx__pause{align-self:flex-start;margin-top:20px;color:var(--dx-teal)}
 @media (min-width:880px){.dx-org__grid{grid-template-columns:1.1fr .9fr;align-items:start;gap:40px}}
 </style>
 <div class="dx__rings" aria-hidden="true"></div>
@@ -840,27 +1230,59 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       <li data-reveal><b aria-hidden="true">3</b><p><strong>Be thorough.</strong> Include side businesses, rentals and nonprofits.</p></li>
     </ol>
     <div class="dx-org__count dx__framed" data-reveal>
-      <h3 id="dx-org-count-title">Count them before you start</h3>
-      <p>Did you include all of these?</p>
-      <ul class="dx-org__kinds"><li>Main business</li><li>Side businesses</li><li>Rentals</li><li>Nonprofits</li></ul>
-      <div class="dx-org__stepper" role="group" aria-labelledby="dx-org-count-title">
-        <button type="button" data-dx-org="-1" aria-label="One fewer entity">−</button>
-        <span class="dx-org__n" data-dx-org-n>1</span>
-        <button type="button" data-dx-org="1" aria-label="One more entity">+</button>
-      </div>
-      <ul class="dx-org__secs" data-dx-org-secs aria-hidden="true"></ul>
-      <p class="dx-org__result" aria-live="polite">Your organizer will open <span data-dx-org-text>1 section</span>.</p>
+      <h3>Count every entity</h3>
+      <p class="dx-org__say">Include your <span class="dx-rot" data-rot="2200"><span class="dx__sr">main business, side businesses, rentals and nonprofits.</span><span class="dx-rot__win" aria-hidden="true"><span class="dx-rot__w">main business.</span><span class="dx-rot__w">side businesses.</span><span class="dx-rot__w">rentals.</span><span class="dx-rot__w">nonprofits.</span></span></span></p>
+      <p>Each one gets its own section in your organizer, so nothing gets missed.</p>
+      <button type="button" class="dx__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
     </div>
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('organizer'); if(!root) return;
-  var n=1, out=root.querySelector('[data-dx-org-n]'), txt=root.querySelector('[data-dx-org-text]'), secs=root.querySelector('[data-dx-org-secs]'), btns=root.querySelectorAll('[data-dx-org]');
-  function draw(){out.textContent=n;txt.textContent=n+(n===1?' section':' sections');btns[0].disabled=n<=1;btns[1].disabled=n>=25;secs.innerHTML=new Array(n+1).join('<li></li>');}
-  btns.forEach(function(b){b.addEventListener('click',function(){n=Math.min(25,Math.max(1,n+parseInt(b.getAttribute('data-dx-org'),10)));draw();});});
-  draw();
-})();
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
 </script>
 </section>
 ```
@@ -925,6 +1347,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-dead__card{position:relative;display:grid;gap:24px;align-items:center;background:var(--dx-grad);color:var(--dx-mist);border-radius:28px;padding:34px 24px;overflow:hidden;box-shadow:0 0 0 2px var(--dx-gold),0 50px 80px -44px rgba(1,38,43,.85)}
 .dx-dead__card::after{content:"";position:absolute;inset:10px;border:1px solid rgba(230,205,150,.3);border-radius:20px;pointer-events:none}
 .dx-dead__big{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:170px;height:170px;border-radius:50%;border:1px solid rgba(230,205,150,.45);box-shadow:inset 0 0 0 14px rgba(230,205,150,.06)}
@@ -1014,6 +1479,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-next .dx__rings{left:-300px;top:-200px}
 .dx-next__line{list-style:none;margin:36px 0 0;padding:0;display:grid}
 .dx-next__line li{position:relative;padding:0 0 34px 66px}
@@ -1023,6 +1531,8 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-next__dot{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;font-size:1.1rem;color:var(--dx-teal);box-shadow:0 0 0 6px rgba(230,205,150,.12)}
 .dx-next__line h3{padding-top:8px;color:var(--dx-ivory)!important}
 .dx-next__line p{margin:0}
+.dx-next__close{margin-top:48px!important;padding-top:28px;border-top:1px solid rgba(230,205,150,.25);font-weight:500;font-size:clamp(1.2rem,4vw,1.6rem);line-height:1.35;color:var(--dx-ivory)}
+.dx-next__close em{font-style:italic;color:var(--dx-champ)}
 @media (min-width:880px){
   .dx-next__line{grid-template-columns:repeat(3,1fr);gap:28px}
   .dx-next__line li{padding:72px 0 0 0}
@@ -1032,7 +1542,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 <div class="dx__rings" aria-hidden="true"></div>
 <div class="dx__in">
   <div data-reveal>
-    <p class="dx__eyebrow">After you submit</p>
+    <p class="dx__eyebrow">After you submit · Peace of mind</p>
     <h2 id="dx-next-title">What happens <em>next.</em></h2>
   </div>
   <ol class="dx-next__line">
@@ -1040,6 +1550,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     <li data-reveal><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
     <li data-reveal><span class="dx-next__dot" aria-hidden="true">3</span><h3>You book your assessment call</h3><p>Once everything is ready, we'll email you a private link to book your assessment call.</p></li>
   </ol>
+  <p class="dx-next__close" data-reveal>That's the Distinct® Experience: <em>highly valued, financially redefined, peace of mind obtained.</em></p>
 </div>
 </section>
 ```
@@ -1104,11 +1615,55 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-sec__card{display:grid;gap:20px;align-items:center;padding:30px 24px;border-radius:24px;background:var(--dx-white);border:2px solid var(--dx-teal);box-shadow:0 30px 60px -44px rgba(1,38,43,.8)}
 .dx-sec__icon{width:72px;height:72px;border-radius:50%;background:var(--dx-grad);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(0,59,66,.08)}
 .dx-sec__icon svg{width:32px;height:32px;stroke:var(--dx-champ)}
 .dx-sec__card h2{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:8px}
 .dx-sec__card p{font-size:1.08rem;margin:0}
+.dx-sec__app{margin-top:8px!important;font-size:.95rem!important;color:var(--dx-gold-dk);font-weight:500}
 @media (min-width:800px){.dx-sec__card{grid-template-columns:auto 1fr auto;gap:30px;padding:36px 40px}}
 </style>
 <div class="dx__in">
@@ -1119,6 +1674,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     <div>
       <h2 id="dx-sec-title">Keep your documents <em>secure.</em></h2>
       <p>For your security, upload tax documents only in TaxDome. Never send them by regular email or text.</p>
+      <p class="dx-sec__app">The TaxDome Client Portal app adds PIN, facial recognition and 2-step authentication.</p>
     </div>
     <a class="dx__btn" href="[TAXDOME PORTAL LINK]" target="_blank" rel="noopener">Log in to TaxDome<span class="dx__sr">(opens in a new tab)</span></a>
   </div>
@@ -1186,6 +1742,49 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-foot{padding-bottom:44px;border-top:2px solid var(--dx-gold)}
 .dx-foot .dx__rings{right:-300px;top:-260px}
 .dx-foot__grid{display:grid;gap:36px}

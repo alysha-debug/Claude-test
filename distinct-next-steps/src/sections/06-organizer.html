@@ -8,20 +8,12 @@
 .dx-org__flow li{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:var(--dx-r);background:rgba(243,237,225,.06);border:1px solid rgba(230,205,150,.25)}
 .dx-org__flow b{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);color:var(--dx-teal);font-weight:700}
 .dx-org__flow p{margin:0;color:var(--dx-ivory);font-size:1.05rem}
-.dx-org__count{position:relative;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:30px 26px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
-.dx-org__count h3{color:var(--dx-teal)!important;margin-bottom:4px}
-.dx-org__count>p{font-size:.98rem}
-.dx-org__kinds{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.dx-org__kinds li{padding:7px 14px;border-radius:99px;background:var(--dx-tint);font-size:.9rem;font-weight:500;color:var(--dx-teal)}
-.dx-org__kinds li::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;background:var(--dx-gold);transform:rotate(45deg)}
-.dx-org__stepper{display:flex;align-items:center;gap:16px}
-.dx-org__stepper button{width:52px;height:52px;border-radius:50%;border:0;background:var(--dx-teal);color:var(--dx-ivory);font:500 1.6rem/1 'Jost',system-ui,sans-serif;cursor:pointer;transition:transform .15s ease}
-.dx-org__stepper button:active{transform:scale(.92)}
-.dx-org__stepper button:disabled{opacity:.35;cursor:not-allowed}
-.dx-org__n{min-width:70px;text-align:center;font-weight:700;font-size:3rem;line-height:1;color:var(--dx-teal)}
-.dx-org__secs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;padding:0;list-style:none}
-.dx-org__secs li{height:10px;flex:0 0 34px;border-radius:99px;background:var(--dx-goldgrad)}
-.dx-org__result{margin:12px 0 0!important;font-weight:500;color:var(--dx-teal)}
+.dx-org__count{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:280px;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:34px 28px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
+.dx-org__count h3{color:var(--dx-teal)!important;font-size:.8rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+.dx-org__say{font-weight:700;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.15;color:var(--dx-teal);margin:0 0 18px!important}
+.dx-org__say .dx-rot__w{color:var(--dx-gold);font-style:italic}
+.dx-org__count p{margin:0}
+.dx-org__count .dx__pause{align-self:flex-start;margin-top:20px;color:var(--dx-teal)}
 @media (min-width:880px){.dx-org__grid{grid-template-columns:1.1fr .9fr;align-items:start;gap:40px}}
 </style>
 <div class="dx__rings" aria-hidden="true"></div>
@@ -38,26 +30,14 @@
       <li data-reveal><b aria-hidden="true">3</b><p><strong>Be thorough.</strong> Include side businesses, rentals and nonprofits.</p></li>
     </ol>
     <div class="dx-org__count dx__framed" data-reveal>
-      <h3 id="dx-org-count-title">Count them before you start</h3>
-      <p>Did you include all of these?</p>
-      <ul class="dx-org__kinds"><li>Main business</li><li>Side businesses</li><li>Rentals</li><li>Nonprofits</li></ul>
-      <div class="dx-org__stepper" role="group" aria-labelledby="dx-org-count-title">
-        <button type="button" data-dx-org="-1" aria-label="One fewer entity">−</button>
-        <span class="dx-org__n" data-dx-org-n>1</span>
-        <button type="button" data-dx-org="1" aria-label="One more entity">+</button>
-      </div>
-      <ul class="dx-org__secs" data-dx-org-secs aria-hidden="true"></ul>
-      <p class="dx-org__result" aria-live="polite">Your organizer will open <span data-dx-org-text>1 section</span>.</p>
+      <h3>Count every entity</h3>
+      <p class="dx-org__say">Include your <span class="dx-rot" data-rot="2200"><span class="dx__sr">main business, side businesses, rentals and nonprofits.</span><span class="dx-rot__win" aria-hidden="true"><span class="dx-rot__w">main business.</span><span class="dx-rot__w">side businesses.</span><span class="dx-rot__w">rentals.</span><span class="dx-rot__w">nonprofits.</span></span></span></p>
+      <p>Each one gets its own section in your organizer, so nothing gets missed.</p>
+      <button type="button" class="dx__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
     </div>
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('organizer'); if(!root) return;
-  var n=1, out=root.querySelector('[data-dx-org-n]'), txt=root.querySelector('[data-dx-org-text]'), secs=root.querySelector('[data-dx-org-secs]'), btns=root.querySelectorAll('[data-dx-org]');
-  function draw(){out.textContent=n;txt.textContent=n+(n===1?' section':' sections');btns[0].disabled=n<=1;btns[1].disabled=n>=25;secs.innerHTML=new Array(n+1).join('<li></li>');}
-  btns.forEach(function(b){b.addEventListener('click',function(){n=Math.min(25,Math.max(1,n+parseInt(b.getAttribute('data-dx-org'),10)));draw();});});
-  draw();
-})();
+/*MOTION*/
 </script>
 </section>

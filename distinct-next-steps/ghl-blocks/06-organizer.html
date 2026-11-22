@@ -53,26 +53,61 @@
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
 .dx-org .dx__rings{right:-280px;bottom:-300px}
 .dx-org__grid{display:grid;gap:26px;margin-top:30px}
 .dx-org__flow{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .dx-org__flow li{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:var(--dx-r);background:rgba(243,237,225,.06);border:1px solid rgba(230,205,150,.25)}
 .dx-org__flow b{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);color:var(--dx-teal);font-weight:700}
 .dx-org__flow p{margin:0;color:var(--dx-ivory);font-size:1.05rem}
-.dx-org__count{position:relative;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:30px 26px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
-.dx-org__count h3{color:var(--dx-teal)!important;margin-bottom:4px}
-.dx-org__count>p{font-size:.98rem}
-.dx-org__kinds{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.dx-org__kinds li{padding:7px 14px;border-radius:99px;background:var(--dx-tint);font-size:.9rem;font-weight:500;color:var(--dx-teal)}
-.dx-org__kinds li::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;background:var(--dx-gold);transform:rotate(45deg)}
-.dx-org__stepper{display:flex;align-items:center;gap:16px}
-.dx-org__stepper button{width:52px;height:52px;border-radius:50%;border:0;background:var(--dx-teal);color:var(--dx-ivory);font:500 1.6rem/1 'Jost',system-ui,sans-serif;cursor:pointer;transition:transform .15s ease}
-.dx-org__stepper button:active{transform:scale(.92)}
-.dx-org__stepper button:disabled{opacity:.35;cursor:not-allowed}
-.dx-org__n{min-width:70px;text-align:center;font-weight:700;font-size:3rem;line-height:1;color:var(--dx-teal)}
-.dx-org__secs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;padding:0;list-style:none}
-.dx-org__secs li{height:10px;flex:0 0 34px;border-radius:99px;background:var(--dx-goldgrad)}
-.dx-org__result{margin:12px 0 0!important;font-weight:500;color:var(--dx-teal)}
+.dx-org__count{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:280px;background:var(--dx-white);color:var(--dx-body);border-radius:var(--dx-r);padding:34px 28px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
+.dx-org__count h3{color:var(--dx-teal)!important;font-size:.8rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+.dx-org__say{font-weight:700;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.15;color:var(--dx-teal);margin:0 0 18px!important}
+.dx-org__say .dx-rot__w{color:var(--dx-gold);font-style:italic}
+.dx-org__count p{margin:0}
+.dx-org__count .dx__pause{align-self:flex-start;margin-top:20px;color:var(--dx-teal)}
 @media (min-width:880px){.dx-org__grid{grid-template-columns:1.1fr .9fr;align-items:start;gap:40px}}
 </style>
 <div class="dx__rings" aria-hidden="true"></div>
@@ -89,26 +124,58 @@
       <li data-reveal><b aria-hidden="true">3</b><p><strong>Be thorough.</strong> Include side businesses, rentals and nonprofits.</p></li>
     </ol>
     <div class="dx-org__count dx__framed" data-reveal>
-      <h3 id="dx-org-count-title">Count them before you start</h3>
-      <p>Did you include all of these?</p>
-      <ul class="dx-org__kinds"><li>Main business</li><li>Side businesses</li><li>Rentals</li><li>Nonprofits</li></ul>
-      <div class="dx-org__stepper" role="group" aria-labelledby="dx-org-count-title">
-        <button type="button" data-dx-org="-1" aria-label="One fewer entity">−</button>
-        <span class="dx-org__n" data-dx-org-n>1</span>
-        <button type="button" data-dx-org="1" aria-label="One more entity">+</button>
-      </div>
-      <ul class="dx-org__secs" data-dx-org-secs aria-hidden="true"></ul>
-      <p class="dx-org__result" aria-live="polite">Your organizer will open <span data-dx-org-text>1 section</span>.</p>
+      <h3>Count every entity</h3>
+      <p class="dx-org__say">Include your <span class="dx-rot" data-rot="2200"><span class="dx__sr">main business, side businesses, rentals and nonprofits.</span><span class="dx-rot__win" aria-hidden="true"><span class="dx-rot__w">main business.</span><span class="dx-rot__w">side businesses.</span><span class="dx-rot__w">rentals.</span><span class="dx-rot__w">nonprofits.</span></span></span></p>
+      <p>Each one gets its own section in your organizer, so nothing gets missed.</p>
+      <button type="button" class="dx__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
     </div>
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('organizer'); if(!root) return;
-  var n=1, out=root.querySelector('[data-dx-org-n]'), txt=root.querySelector('[data-dx-org-text]'), secs=root.querySelector('[data-dx-org-secs]'), btns=root.querySelectorAll('[data-dx-org]');
-  function draw(){out.textContent=n;txt.textContent=n+(n===1?' section':' sections');btns[0].disabled=n<=1;btns[1].disabled=n>=25;secs.innerHTML=new Array(n+1).join('<li></li>');}
-  btns.forEach(function(b){b.addEventListener('click',function(){n=Math.min(25,Math.max(1,n+parseInt(b.getAttribute('data-dx-org'),10)));draw();});});
-  draw();
-})();
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
 </script>
 </section>

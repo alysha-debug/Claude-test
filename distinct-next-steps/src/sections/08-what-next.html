@@ -11,6 +11,8 @@
 .dx-next__dot{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;font-size:1.1rem;color:var(--dx-teal);box-shadow:0 0 0 6px rgba(230,205,150,.12)}
 .dx-next__line h3{padding-top:8px;color:var(--dx-ivory)!important}
 .dx-next__line p{margin:0}
+.dx-next__close{margin-top:48px!important;padding-top:28px;border-top:1px solid rgba(230,205,150,.25);font-weight:500;font-size:clamp(1.2rem,4vw,1.6rem);line-height:1.35;color:var(--dx-ivory)}
+.dx-next__close em{font-style:italic;color:var(--dx-champ)}
 @media (min-width:880px){
   .dx-next__line{grid-template-columns:repeat(3,1fr);gap:28px}
   .dx-next__line li{padding:72px 0 0 0}
@@ -20,7 +22,7 @@
 <div class="dx__rings" aria-hidden="true"></div>
 <div class="dx__in">
   <div data-reveal>
-    <p class="dx__eyebrow">After you submit</p>
+    <p class="dx__eyebrow">After you submit · Peace of mind</p>
     <h2 id="dx-next-title">What happens <em>next.</em></h2>
   </div>
   <ol class="dx-next__line">
@@ -28,5 +30,6 @@
     <li data-reveal><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
     <li data-reveal><span class="dx-next__dot" aria-hidden="true">3</span><h3>You book your assessment call</h3><p>Once everything is ready, we'll email you a private link to book your assessment call.</p></li>
   </ol>
+  <p class="dx-next__close" data-reveal>That's the Distinct® Experience: <em>highly valued, financially redefined, peace of mind obtained.</em></p>
 </div>
 </section>

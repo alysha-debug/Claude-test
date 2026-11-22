@@ -1,107 +1,77 @@
 <!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
-<!-- Includes the floating progress pill (bottom of screen) that follows visitors down the page. -->
+<!-- Flip cards: tap/click (or Enter/Space on the flip button) to turn a card over. -->
 <section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
 <style>
 /*BASE*/
-.dx-steps__head{display:grid;gap:20px;margin-bottom:34px}
-.dx-steps__meter{display:flex;align-items:center;gap:16px;background:var(--dx-tint);border-radius:999px;padding:10px 18px 10px 10px;max-width:420px}
-.dx-steps__ring{--p:0;width:52px;height:52px;flex:none;border-radius:50%;background:conic-gradient(var(--dx-gold) calc(var(--p)*1%),rgba(0,59,66,.12) 0);display:grid;place-items:center;transition:--p .5s}
-.dx-steps__ring span{width:40px;height:40px;border-radius:50%;background:var(--dx-white);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);font-size:.95rem}
-.dx-steps__meter p{margin:0;font-weight:500;color:var(--dx-teal)}
-.dx-steps__list{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
-.dx-step{position:relative;display:flex;flex-direction:column;background:var(--dx-grad);border-radius:var(--dx-r);padding:30px 24px 24px;color:var(--dx-mist);overflow:hidden;box-shadow:0 24px 50px -30px rgba(1,38,43,.8);transition:transform .25s ease}
-.dx-step:hover{transform:translateY(-3px)}
-.dx-step::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.25);border-radius:15px;pointer-events:none}
-.dx-step__num{font-weight:700;font-size:4.2rem;line-height:.85;letter-spacing:-.04em;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
-.dx-step strong{color:var(--dx-champ)}
-.dx-step h3{color:var(--dx-ivory)!important;font-size:1.3rem}
-.dx-step p{flex:1;margin-bottom:22px}
-.dx-step__done{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.92rem;font-weight:500;color:var(--dx-ivory);cursor:pointer}
-.dx-step__done input{width:22px;height:22px;margin:0;accent-color:var(--dx-champ);cursor:pointer}
-.dx-step .dx__btn{position:relative;z-index:1}
-.dx-step__badge{position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:all .3s ease}
-.dx-step__badge svg{width:18px;height:18px;stroke:var(--dx-teal)}
-.dx-step.is-done .dx-step__badge{opacity:1;transform:none}
-.dx-step.is-done{box-shadow:0 0 0 2px var(--dx-champ),0 24px 50px -30px rgba(1,38,43,.8)}
-/* Floating progress pill */
-.dx-pill{position:fixed;z-index:9999;left:50%;bottom:14px;transform:translate(-50%,140%);display:flex;align-items:center;gap:12px;max-width:calc(100% - 24px);padding:8px 8px 8px 16px;border-radius:999px;background:var(--dx-deep);border:1px solid rgba(230,205,150,.4);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);font:500 .9rem/1.2 'Jost',system-ui,sans-serif;color:var(--dx-ivory);transition:transform .35s ease}
-.dx-pill.is-on{transform:translate(-50%,0)}
-.dx-pill__dots{display:flex;gap:6px}
-.dx-pill__dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--dx-champ)}
-.dx-pill__dots i.on{background:var(--dx-champ)}
-.dx-pill a{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border-radius:999px;background:var(--dx-goldgrad);color:var(--dx-teal)!important;font-weight:700;text-decoration:none!important;white-space:nowrap}
-.dx-pill a:focus-visible{outline:3px solid var(--dx-champ);outline-offset:3px}
-@media (max-width:420px){.dx-pill__label{display:none}}
-@media (min-width:860px){.dx-steps__head{grid-template-columns:1fr auto;align-items:end}.dx-steps__list{grid-template-columns:repeat(3,1fr)}}
+.dx-steps__head{margin-bottom:34px}
+.dx-steps .dx-flip__face{position:relative;display:flex;flex-direction:column;min-height:330px;padding:30px 26px 24px}
+.dx-steps .dx-flip__face::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.28);border-radius:15px;pointer-events:none}
+.dx-steps .dx-flip__front{background:var(--dx-grad);color:var(--dx-mist);box-shadow:0 30px 60px -34px rgba(1,38,43,.85)}
+.dx-steps .dx-flip__back{background:var(--dx-deep);color:var(--dx-mist);box-shadow:0 0 0 2px var(--dx-champ),0 30px 60px -34px rgba(1,38,43,.85)}
+.dx-step__num{font-weight:700;font-size:5.4rem;line-height:.82;letter-spacing:-.05em;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:auto}
+.dx-steps h3{color:var(--dx-ivory)!important;font-size:1.4rem;line-height:1.25;margin:26px 0 4px}
+.dx-steps .dx-flip__btn{color:var(--dx-champ);position:relative;z-index:1}
+.dx-steps .dx-flip__front .dx-flip__btn{margin-top:18px}
+.dx-step__label{font-weight:500;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dx-champ);margin-bottom:14px}
+.dx-steps .dx-flip__back p{color:var(--dx-ivory);font-size:1.08rem;margin-bottom:22px}
+.dx-steps .dx-flip__back .dx__btn{position:relative;z-index:1;margin-bottom:6px}
+.dx-steps .dx-flip:hover .dx-flip__front{box-shadow:0 0 0 1px var(--dx-champ),0 36px 70px -34px rgba(1,38,43,.9)}
 </style>
 <div class="dx__in">
   <div class="dx-steps__head" data-reveal>
-    <div>
-      <p class="dx__eyebrow">Your next steps</p>
-      <h2 id="dx-steps-title">Three steps to get <em>ready.</em></h2>
-      <p class="dx__sub" style="margin:0">Work through these in order. Each button takes you to the right spot on this page.</p>
-    </div>
-    <div class="dx-steps__meter">
-      <div class="dx-steps__ring" data-dx-ring aria-hidden="true"><span data-dx-steps-count-ring>0</span></div>
-      <p aria-live="polite"><span data-dx-steps-count>0</span> of 3 steps done</p>
-    </div>
+    <p class="dx__eyebrow">Your Distinct® next steps</p>
+    <h2 id="dx-steps-title">Three steps to get <em>ready.</em></h2>
+    <p class="dx__sub" style="margin:0">Tap a card to flip it. Each one takes you to the right spot on this page.</p>
   </div>
-  <ol class="dx-steps__list">
-    <li class="dx-step" data-dx-step="1" data-dx-target="#welcome-video" data-dx-label="Watch the welcome video" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">01</span>
-      <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
-      <p>A short welcome from our team before you get started.</p>
-      <a class="dx__btn dx__btn--gold" href="#welcome-video">Go to step 1</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+  <ol class="dx-flips dx-flips--3">
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">01</span>
+          <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 1</span>
+          <p>A short welcome from our team before you get started.</p>
+          <a class="dx__btn dx__btn--gold" href="#welcome-video">Go to step 1</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
-    <li class="dx-step" data-dx-step="2" data-dx-target="#taxdome-video" data-dx-label="Set up TaxDome" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">02</span>
-      <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
-      <p>Your portal is where you'll complete your organizer and upload your documents.</p>
-      <a class="dx__btn dx__btn--gold" href="#taxdome-video">Go to step 2</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">02</span>
+          <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 2</span>
+          <p>Your portal is where you'll complete your organizer and upload your documents.</p>
+          <a class="dx__btn dx__btn--gold" href="#taxdome-video">Go to step 2</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
-    <li class="dx-step" data-dx-step="3" data-dx-target="#checklist" data-dx-label="Organizer + documents" data-reveal>
-      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-      <span class="dx-step__num" aria-hidden="true">03</span>
-      <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
-      <p>See exactly what to gather, what it looks like and where to find it.</p>
-      <a class="dx__btn dx__btn--gold" href="#checklist">Go to step 3</a>
-      <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
+    <li class="dx-flip" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <span class="dx-step__num" aria-hidden="true">03</span>
+          <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip for details <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+        </div>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-step__label">Step 3</span>
+          <p>See exactly what to gather, what it looks like and where to find it.</p>
+          <a class="dx__btn dx__btn--gold" href="#checklist">Go to step 3</a>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
+      </div>
     </li>
   </ol>
 </div>
-<nav class="dx-pill" aria-label="Your progress" data-dx-pill>
-  <span class="dx-pill__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-  <span class="dx-pill__label" data-dx-pill-label>0 of 3 done</span>
-  <a href="#welcome-video" data-dx-pill-link>Next: Watch the welcome video</a>
-</nav>
 <script>
-(function(){
-  var root=document.getElementById('steps'); if(!root) return;
-  var KEY='dx-next-steps-progress', items=root.querySelectorAll('[data-dx-step]');
-  var count=root.querySelector('[data-dx-steps-count]'), ringN=root.querySelector('[data-dx-steps-count-ring]'), ring=root.querySelector('[data-dx-ring]');
-  var pill=root.querySelector('[data-dx-pill]'), dots=pill.querySelectorAll('i'), pLabel=pill.querySelector('[data-dx-pill-label]'), pLink=pill.querySelector('[data-dx-pill-link]');
-  var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
-  function update(){
-    var n=0,next=null;
-    items.forEach(function(li,i){var cb=li.querySelector('[data-dx-step-check]');li.classList.toggle('is-done',cb.checked);dots[i].classList.toggle('on',cb.checked);if(cb.checked)n++;else if(!next)next=li;saved[li.getAttribute('data-dx-step')]=cb.checked;});
-    count.textContent=n; ringN.textContent=n; ring.style.setProperty('--p',Math.round(n/items.length*100));
-    pLabel.textContent=n+' of 3 done';
-    if(next){pLink.href=next.getAttribute('data-dx-target');pLink.textContent='Next: '+next.getAttribute('data-dx-label');}
-    else{pLink.href='#what-next';pLink.textContent='All set: what happens next';}
-    try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
-  }
-  items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');cb.checked=!!saved[li.getAttribute('data-dx-step')];cb.addEventListener('change',update);});
-  update();
-  function onScroll(){
-    var top=root.getBoundingClientRect().top, foot=document.getElementById('footer');
-    var footIn=foot?foot.getBoundingClientRect().top<window.innerHeight:false;
-    pill.classList.toggle('is-on',top<-200&&!footIn);
-  }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-})();
+/*MOTION*/
 </script>
 </section>

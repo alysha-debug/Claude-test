@@ -1,6 +1,6 @@
 <!-- ===== SECTION 5: DOCUMENT CHECKLIST (#checklist) ===== -->
 <!-- ALYSHA TO CONFIRM: starting list is prior tax returns, year-to-date P&L, IRS/state letters.
-     To add a document, copy one <li class="dx-doc">…</li> block; the counter updates automatically. -->
+     To add a document, copy one <li class="dx-flip dx-doc">…</li> block. Cards flip to show where to find each document. -->
 <section id="checklist" class="dx dx--tint dx-check" tabindex="-1" aria-labelledby="dx-check-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
@@ -55,87 +55,153 @@
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-.dx-check__top{display:grid;gap:20px;margin-bottom:34px}
-.dx-check__count{display:flex;align-items:center;gap:14px;align-self:end;justify-self:start;margin:0;padding:12px 20px;border-radius:999px;background:var(--dx-teal);color:var(--dx-ivory);font-weight:500}
-.dx-check__count b{font-size:1.5rem;color:var(--dx-champ);font-weight:700}
-.dx-check__list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
-.dx-doc{display:flex;flex-direction:column;background:var(--dx-white);border-radius:var(--dx-r);overflow:hidden;box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6);transition:box-shadow .25s ease,transform .25s ease}
-.dx-doc:hover{transform:translateY(-3px)}
+/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+/* Keyword ribbon */
+.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
+.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
+.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
+.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
+.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
+@keyframes dxMarq{to{transform:translateX(-50%)}}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
+  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
+  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
+.dx-check__top{margin-bottom:34px}
+.dx-doc .dx-flip__front{display:flex;flex-direction:column;background:var(--dx-white);box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc:hover .dx-flip__front{box-shadow:0 0 0 2px var(--dx-gold),0 30px 56px -36px rgba(1,38,43,.7)}
 .dx-doc__img{position:relative;aspect-ratio:4/3;background:var(--dx-grad)}
 .dx-doc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dx-doc__ph{position:absolute;inset:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;border:1.5px dashed rgba(230,205,150,.55);border-radius:var(--dx-r-sm);font-size:.8rem;line-height:1.35;padding:12px;color:var(--dx-mist)}
 .dx-doc__ph svg{width:40px;height:40px;stroke:var(--dx-champ)}
-.dx-doc__tag{position:absolute;left:16px;bottom:-16px;z-index:1;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
-.dx-doc__body{padding:28px 22px 18px;display:flex;flex-direction:column;flex:1}
-.dx-doc__where{font-size:.96rem;flex:1}
-.dx-doc__where b{font-weight:500;color:var(--dx-teal)}
-.dx-doc__have{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--dx-teal);cursor:pointer;padding-top:14px;border-top:1px solid rgba(0,59,66,.12)}
-.dx-doc__have input{width:22px;height:22px;margin:0;accent-color:var(--dx-teal);cursor:pointer}
-.dx-doc.is-ready{box-shadow:0 0 0 2px var(--dx-gold),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc__tag{position:absolute;left:16px;bottom:-18px;z-index:1;width:42px;height:42px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
+.dx-doc__body{display:flex;flex-direction:column;flex:1;padding:32px 22px 20px}
+.dx-doc .dx-flip__front .dx-flip__btn{color:var(--dx-teal);font-weight:700}
+.dx-doc .dx-flip__back{position:relative;display:flex;flex-direction:column;padding:34px 26px 24px;background:var(--dx-grad);color:var(--dx-ivory);box-shadow:0 0 0 2px var(--dx-champ),0 26px 50px -36px rgba(1,38,43,.7)}
+.dx-doc .dx-flip__back::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.28);border-radius:15px;pointer-events:none}
+.dx-doc__label{font-weight:500;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dx-champ);margin-bottom:12px}
+.dx-doc .dx-flip__back h3{color:var(--dx-ivory)}
+.dx-doc .dx-flip__back p{font-size:1.08rem;margin:10px 0 18px}
+.dx-doc .dx-flip__back .dx-flip__btn{color:var(--dx-champ);position:relative;z-index:1}
 .dx-check__notes{margin-top:26px;display:grid;gap:14px}
 .dx-note{display:flex;gap:16px;align-items:flex-start;background:var(--dx-grad);color:var(--dx-mist);border-radius:var(--dx-r);padding:22px 24px}
 .dx-note__ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center}
 .dx-note__ic svg{width:20px;height:20px;stroke:var(--dx-teal)}
 .dx-note p{margin:0}
 .dx-note strong{color:var(--dx-champ)}
-@media (min-width:860px){.dx-check__top{grid-template-columns:1fr auto}.dx-check__count{justify-self:end}.dx-check__list{grid-template-columns:repeat(3,1fr)}.dx-check__notes{grid-template-columns:1fr 1fr}}
+@media (min-width:860px){.dx-check__notes{grid-template-columns:1fr 1fr}}
 </style>
 <div class="dx__in">
   <div class="dx-check__top" data-reveal>
-    <div>
-      <p class="dx__eyebrow">Step 3</p>
-      <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
-      <p class="dx__sub" style="margin:0">Here's what each document looks like and where to find it. Upload everything to your TaxDome portal.</p>
-    </div>
-    <p class="dx-check__count" aria-live="polite"><b data-dx-doc-count>0</b> of <span data-dx-doc-total>3</span> ready</p>
+    <p class="dx__eyebrow">Step 3 · Judgment-free</p>
+    <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
+    <p class="dx__sub" style="margin:0">Here's what each document looks like. Flip a card to see where to find it, then upload everything to your TaxDome portal.</p>
   </div>
-  <ul class="dx-check__list">
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
-          [IMAGE: PRIOR TAX RETURN MOCK-UP]
+  <ul class="dx-flips dx-flips--3">
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
+              [IMAGE: PRIOR TAX RETURN MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">1</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Prior tax returns</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">1</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Prior tax returns</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Prior tax returns</h3>
+          <p>Your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
-          [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
+              [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">2</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Year-to-date profit and loss</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">2</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Year-to-date profit and loss</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Year-to-date profit and loss</h3>
+          <p>Run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          [IMAGE: IRS OR STATE LETTER MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              [IMAGE: IRS OR STATE LETTER MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">3</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Any IRS or state letters</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">3</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Any IRS or state letters</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Any IRS or state letters</h3>
+          <p>Notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
   </ul>
@@ -151,18 +217,50 @@
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('checklist'); if(!root) return;
-  var KEY='dx-next-steps-docs', boxes=root.querySelectorAll('[data-dx-doc]');
-  var count=root.querySelector('[data-dx-doc-count]'); root.querySelector('[data-dx-doc-total]').textContent=boxes.length;
-  var saved=[]; try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){}
-  function update(){
-    var n=0,state=[];
-    boxes.forEach(function(b,i){b.closest('.dx-doc').classList.toggle('is-ready',b.checked);if(b.checked)n++;state[i]=b.checked;});
-    count.textContent=n; try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
-  }
-  boxes.forEach(function(b,i){b.checked=!!saved[i];b.addEventListener('change',update);});
-  update();
-})();
+/* Distinct motion kit: rotating words, pause control, flip cards. Scoped to this section only. */
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused=false;
+  [].forEach.call(root.querySelectorAll('[data-rot]'),function(r){
+    var w=r.querySelectorAll('.dx-rot__w'),i=0,hover=false; if(!w.length) return;
+    w[0].classList.add('is-on'); if(reduce) return;
+    r.addEventListener('mouseenter',function(){hover=true}); r.addEventListener('mouseleave',function(){hover=false});
+    setInterval(function(){
+      if(paused||hover||document.hidden) return;
+      var c=w[i]; c.classList.remove('is-on'); c.classList.add('is-out');
+      setTimeout(function(){c.classList.remove('is-out')},800);
+      i=(i+1)%w.length; w[i].classList.add('is-on');
+    },+r.getAttribute('data-rot')||2600);
+  });
+  [].forEach.call(root.querySelectorAll('[data-pause]'),function(b){
+    b.addEventListener('click',function(){
+      paused=!paused; b.setAttribute('aria-pressed',paused);
+      b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
+      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
+    });
+  });
+  [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
+    list.classList.add('is-live');
+    var cards=list.querySelectorAll('.dx-flip');
+    function set(card,on){
+      card.classList.toggle('is-flipped',on);
+      var f=card.querySelector('.dx-flip__front'), k=card.querySelector('.dx-flip__back');
+      (on?f:k).setAttribute('inert',''); (on?k:f).removeAttribute('inert');
+      [].forEach.call(card.querySelectorAll('.dx-flip__btn'),function(x){x.setAttribute('aria-expanded',on)});
+    }
+    [].forEach.call(cards,function(c){
+      set(c,false);
+      c.addEventListener('click',function(e){
+        if(e.target.closest('a')) return;
+        var on=!c.classList.contains('is-flipped'); set(c,on);
+        if(e.detail===0){var t=c.querySelector(on?'.dx-flip__back .dx-flip__btn':'.dx-flip__front .dx-flip__btn'); if(t) t.focus();}
+      });
+    });
+    if(!reduce&&cards[0]&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){cards[0].classList.add('is-peek');io.disconnect();}},{threshold:.6});
+      io.observe(cards[0]);
+    }
+  });
+})(document.currentScript&&document.currentScript.closest('.dx'));
 </script>
 </section>

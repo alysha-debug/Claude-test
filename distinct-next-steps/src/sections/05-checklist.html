@@ -1,90 +1,113 @@
 <!-- ===== SECTION 5: DOCUMENT CHECKLIST (#checklist) ===== -->
 <!-- ALYSHA TO CONFIRM: starting list is prior tax returns, year-to-date P&L, IRS/state letters.
-     To add a document, copy one <li class="dx-doc">…</li> block; the counter updates automatically. -->
+     To add a document, copy one <li class="dx-flip dx-doc">…</li> block. Cards flip to show where to find each document. -->
 <section id="checklist" class="dx dx--tint dx-check" tabindex="-1" aria-labelledby="dx-check-title">
 <style>
 /*BASE*/
-.dx-check__top{display:grid;gap:20px;margin-bottom:34px}
-.dx-check__count{display:flex;align-items:center;gap:14px;align-self:end;justify-self:start;margin:0;padding:12px 20px;border-radius:999px;background:var(--dx-teal);color:var(--dx-ivory);font-weight:500}
-.dx-check__count b{font-size:1.5rem;color:var(--dx-champ);font-weight:700}
-.dx-check__list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
-.dx-doc{display:flex;flex-direction:column;background:var(--dx-white);border-radius:var(--dx-r);overflow:hidden;box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6);transition:box-shadow .25s ease,transform .25s ease}
-.dx-doc:hover{transform:translateY(-3px)}
+.dx-check__top{margin-bottom:34px}
+.dx-doc .dx-flip__front{display:flex;flex-direction:column;background:var(--dx-white);box-shadow:0 1px 0 rgba(0,59,66,.08),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc:hover .dx-flip__front{box-shadow:0 0 0 2px var(--dx-gold),0 30px 56px -36px rgba(1,38,43,.7)}
 .dx-doc__img{position:relative;aspect-ratio:4/3;background:var(--dx-grad)}
 .dx-doc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dx-doc__ph{position:absolute;inset:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;border:1.5px dashed rgba(230,205,150,.55);border-radius:var(--dx-r-sm);font-size:.8rem;line-height:1.35;padding:12px;color:var(--dx-mist)}
 .dx-doc__ph svg{width:40px;height:40px;stroke:var(--dx-champ)}
-.dx-doc__tag{position:absolute;left:16px;bottom:-16px;z-index:1;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
-.dx-doc__body{padding:28px 22px 18px;display:flex;flex-direction:column;flex:1}
-.dx-doc__where{font-size:.96rem;flex:1}
-.dx-doc__where b{font-weight:500;color:var(--dx-teal)}
-.dx-doc__have{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--dx-teal);cursor:pointer;padding-top:14px;border-top:1px solid rgba(0,59,66,.12)}
-.dx-doc__have input{width:22px;height:22px;margin:0;accent-color:var(--dx-teal);cursor:pointer}
-.dx-doc.is-ready{box-shadow:0 0 0 2px var(--dx-gold),0 26px 50px -36px rgba(1,38,43,.6)}
+.dx-doc__tag{position:absolute;left:16px;bottom:-18px;z-index:1;width:42px;height:42px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
+.dx-doc__body{display:flex;flex-direction:column;flex:1;padding:32px 22px 20px}
+.dx-doc .dx-flip__front .dx-flip__btn{color:var(--dx-teal);font-weight:700}
+.dx-doc .dx-flip__back{position:relative;display:flex;flex-direction:column;padding:34px 26px 24px;background:var(--dx-grad);color:var(--dx-ivory);box-shadow:0 0 0 2px var(--dx-champ),0 26px 50px -36px rgba(1,38,43,.7)}
+.dx-doc .dx-flip__back::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.28);border-radius:15px;pointer-events:none}
+.dx-doc__label{font-weight:500;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dx-champ);margin-bottom:12px}
+.dx-doc .dx-flip__back h3{color:var(--dx-ivory)}
+.dx-doc .dx-flip__back p{font-size:1.08rem;margin:10px 0 18px}
+.dx-doc .dx-flip__back .dx-flip__btn{color:var(--dx-champ);position:relative;z-index:1}
 .dx-check__notes{margin-top:26px;display:grid;gap:14px}
 .dx-note{display:flex;gap:16px;align-items:flex-start;background:var(--dx-grad);color:var(--dx-mist);border-radius:var(--dx-r);padding:22px 24px}
 .dx-note__ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center}
 .dx-note__ic svg{width:20px;height:20px;stroke:var(--dx-teal)}
 .dx-note p{margin:0}
 .dx-note strong{color:var(--dx-champ)}
-@media (min-width:860px){.dx-check__top{grid-template-columns:1fr auto}.dx-check__count{justify-self:end}.dx-check__list{grid-template-columns:repeat(3,1fr)}.dx-check__notes{grid-template-columns:1fr 1fr}}
+@media (min-width:860px){.dx-check__notes{grid-template-columns:1fr 1fr}}
 </style>
 <div class="dx__in">
   <div class="dx-check__top" data-reveal>
-    <div>
-      <p class="dx__eyebrow">Step 3</p>
-      <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
-      <p class="dx__sub" style="margin:0">Here's what each document looks like and where to find it. Upload everything to your TaxDome portal.</p>
-    </div>
-    <p class="dx-check__count" aria-live="polite"><b data-dx-doc-count>0</b> of <span data-dx-doc-total>3</span> ready</p>
+    <p class="dx__eyebrow">Step 3 · Judgment-free</p>
+    <h2 id="dx-check-title">Your document <em>checklist.</em></h2>
+    <p class="dx__sub" style="margin:0">Here's what each document looks like. Flip a card to see where to find it, then upload everything to your TaxDome portal.</p>
   </div>
-  <ul class="dx-check__list">
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
-          [IMAGE: PRIOR TAX RETURN MOCK-UP]
+  <ul class="dx-flips dx-flips--3">
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: PRIOR TAX RETURN MOCK-UP]" alt="Sample first page of a prior-year tax return" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample first page of a prior-year tax return">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
+              [IMAGE: PRIOR TAX RETURN MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">1</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Prior tax returns</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">1</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Prior tax returns</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Prior tax returns</h3>
+          <p>Your copy from whoever prepared your return, or the PDF saved in your tax software. Include personal and business returns.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
-          [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]" alt="Sample year-to-date profit and loss report" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample year-to-date profit and loss report">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
+              [IMAGE: YEAR-TO-DATE PROFIT AND LOSS MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">2</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Year-to-date profit and loss</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">2</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Year-to-date profit and loss</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Year-to-date profit and loss</h3>
+          <p>Run a Profit and Loss report in your bookkeeping software, dated from January 1 to today, or ask your bookkeeper for it.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
-    <li class="dx-doc" data-reveal>
-      <div class="dx-doc__img">
-        <!-- IMAGE SLOT: replace the placeholder div with
-             <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
-        <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          [IMAGE: IRS OR STATE LETTER MOCK-UP]
+    <li class="dx-flip dx-doc" data-reveal>
+      <div class="dx-flip__inner">
+        <div class="dx-flip__face dx-flip__front">
+          <div class="dx-doc__img">
+            <!-- IMAGE SLOT: replace the placeholder div with
+                 <img src="[IMAGE: IRS OR STATE LETTER MOCK-UP]" alt="Sample IRS or state tax notice letter" loading="lazy"> -->
+            <div class="dx-doc__ph" role="img" aria-label="Sample IRS or state tax notice letter">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              [IMAGE: IRS OR STATE LETTER MOCK-UP]
+            </div>
+            <span class="dx-doc__tag" aria-hidden="true">3</span>
+          </div>
+          <div class="dx-doc__body">
+            <h3>Any IRS or state letters</h3>
+            <button type="button" class="dx-flip__btn" aria-expanded="false">Where do I find it? <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5"/></svg></button>
+          </div>
         </div>
-        <span class="dx-doc__tag" aria-hidden="true">3</span>
-      </div>
-      <div class="dx-doc__body">
-        <h3>Any IRS or state letters</h3>
-        <p class="dx-doc__where"><b>Where to find it:</b> notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
-        <label class="dx-doc__have"><input type="checkbox" data-dx-doc> I have this ready</label>
+        <div class="dx-flip__face dx-flip__back">
+          <span class="dx-doc__label">Where to find it</span>
+          <h3>Any IRS or state letters</h3>
+          <p>Notices mailed to you by the IRS or your state tax agency. The notice number is usually printed in the top right corner.</p>
+          <button type="button" class="dx-flip__btn" aria-expanded="false">Flip back <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></button>
+        </div>
       </div>
     </li>
   </ul>
@@ -100,18 +123,6 @@
   </div>
 </div>
 <script>
-(function(){
-  var root=document.getElementById('checklist'); if(!root) return;
-  var KEY='dx-next-steps-docs', boxes=root.querySelectorAll('[data-dx-doc]');
-  var count=root.querySelector('[data-dx-doc-count]'); root.querySelector('[data-dx-doc-total]').textContent=boxes.length;
-  var saved=[]; try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){}
-  function update(){
-    var n=0,state=[];
-    boxes.forEach(function(b,i){b.closest('.dx-doc').classList.toggle('is-ready',b.checked);if(b.checked)n++;state[i]=b.checked;});
-    count.textContent=n; try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
-  }
-  boxes.forEach(function(b,i){b.checked=!!saved[i];b.addEventListener('change',update);});
-  update();
-})();
+/*MOTION*/
 </script>
 </section>
