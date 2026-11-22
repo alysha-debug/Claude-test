@@ -5,16 +5,29 @@ SRC = ROOT / "src"
 base = (SRC / "base.css").read_text().strip()
 sections = sorted((SRC / "sections").glob("*.html"))
 
-HEAD_BLOCK = """<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: step Settings > Head tracking code) -->
+HEAD_BLOCK = """<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: step Settings > Tracking Code > Head) -->
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#003b42">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
 <style>
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:#fbf8f2}
-</style>"""
+  body{background:#ffffff}
+</style>
+<script>
+/* Scroll-reveal for Distinct sections. Content stays visible if this script is missing. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('dx-js');
+  function go(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.dx [data-reveal]').forEach(function(el){io.observe(el);});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+</script>"""
 
 blocks = []
 outdir = ROOT / "ghl-blocks"; outdir.mkdir(exist_ok=True)
@@ -42,20 +55,20 @@ preview = f"""<!doctype html>
 (ROOT / "index.html").write_text(preview)
 
 notes = {
- "1": "Section: full width, background #F3EDE1, padding 0. This is the only H1 on the page.",
- "2": "Section: full width, background #FBF8F2, padding 0. Step progress is saved in the visitor's own browser only.",
- "3": "Section: full width, background #FFFFFF, padding 0. When the video is ready, swap the placeholder for the embed (see the comment in the code).",
- "4": "Section: full width, background #FBF8F2, padding 0. Leave href=\"[TAXDOME PORTAL LINK]\" until you have the TaxDome login URL.",
- "5": "Section: full width, background #FFFFFF, padding 0. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list.",
- "6": "Section: full width, background #FBF8F2, padding 0. The entity counter is a helper only and saves nothing.",
+ "1": "Section: full width, background #003B42, padding 0. Dark-teal hero. This is the only H1 on the page.",
+ "2": "Section: full width, background #FFFFFF, padding 0. Teal step cards. Also contains the floating progress pill that appears at the bottom of the screen once visitors scroll past the steps.",
+ "3": "Section: full width, background #003B42, padding 0. When the video is ready, swap the placeholder for the embed (see the comment in the code).",
+ "4": "Section: full width, background #FFFFFF, padding 0. Leave href=\"[TAXDOME PORTAL LINK]\" until you have the TaxDome login URL.",
+ "5": "Section: full width, background #F2F6F6, padding 0. Swap each image placeholder for your mock-up (see comments). Alysha must confirm the document list.",
+ "6": "Section: full width, background #003B42, padding 0. The entity counter is a helper only and saves nothing.",
  "7": "Section: full width, background #FFFFFF, padding 0. Static text only: no countdown.",
- "8": "Section: full width, background #FBF8F2, padding 0.",
+ "8": "Section: full width, background #01262B, padding 0.",
  "9": "Section: full width, background #FFFFFF, padding 0. This block repeats the [TAXDOME PORTAL LINK] button.",
- "10": "Section: full width, background #F3EDE1, padding 0. Turn off GHL's default footer, if your funnel has one, to avoid two footers.",
+ "10": "Section: full width, background #01262B, padding 0. Turn off GHL's default footer, if your funnel has one, to avoid two footers.",
 }
 md = [(ROOT / "src" / "kit-intro.md").read_text().strip(), "",
       "## Global head code (paste once)", "",
-      "Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost, turns on smooth scrolling and keeps this page out of search results.", "",
+      "Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost, turns on smooth scrolling and the gentle scroll-in animation, and keeps this page out of search results. If you skip it, everything still shows, just without the animation.", "",
       "```html", HEAD_BLOCK, "```", ""]
 for name, n, t, anchor, code in blocks:
     md += [f"## SECTION {n}: {t.title().replace("Taxdome","TaxDome")} (`{anchor}`)", "",

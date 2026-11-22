@@ -1,10 +1,23 @@
-<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: step Settings > Head tracking code) -->
+<!-- Distinct Next Steps: GLOBAL HEAD CODE (paste once in GHL: step Settings > Tracking Code > Head) -->
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#003b42">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
 <style>
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:#fbf8f2}
+  body{background:#ffffff}
 </style>
+<script>
+/* Scroll-reveal for Distinct sections. Content stays visible if this script is missing. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('dx-js');
+  function go(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.dx [data-reveal]').forEach(function(el){io.observe(el);});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+</script>

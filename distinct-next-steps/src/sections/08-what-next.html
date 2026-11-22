@@ -1,29 +1,32 @@
 <!-- ===== SECTION 8: WHAT HAPPENS NEXT (#what-next) ===== -->
-<section id="what-next" class="dx dx-next" tabindex="-1" aria-labelledby="dx-next-title">
+<section id="what-next" class="dx dx--deep dx-next" tabindex="-1" aria-labelledby="dx-next-title">
 <style>
 /*BASE*/
-.dx-next{background:var(--dx-cream)}
-.dx-next__line{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
-.dx-next__line li{position:relative;padding:0 0 28px 54px}
+.dx-next .dx__rings{left:-300px;top:-200px}
+.dx-next__line{list-style:none;margin:36px 0 0;padding:0;display:grid}
+.dx-next__line li{position:relative;padding:0 0 34px 66px}
 .dx-next__line li:last-child{padding-bottom:0}
-.dx-next__line li::before{content:"";position:absolute;left:17px;top:38px;bottom:4px;width:2px;background:var(--dx-line)}
+.dx-next__line li::before{content:"";position:absolute;left:23px;top:52px;bottom:6px;width:2px;background:linear-gradient(var(--dx-champ),rgba(230,205,150,.15))}
 .dx-next__line li:last-child::before{display:none}
-.dx-next__dot{position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--dx-white);border:2px solid var(--dx-gold);display:grid;place-items:center;font-weight:700;color:var(--dx-teal)}
-.dx-next__line h3{padding-top:4px}
-.dx-next__line p{color:var(--dx-soft);margin:0}
-@media (min-width:860px){
-  .dx-next__line{grid-template-columns:repeat(3,1fr);gap:22px}
-  .dx-next__line li{padding:52px 0 0 0}
-  .dx-next__line li::before{left:44px;right:-22px;top:17px;bottom:auto;width:auto;height:2px}
+.dx-next__dot{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;font-weight:700;font-size:1.1rem;color:var(--dx-teal);box-shadow:0 0 0 6px rgba(230,205,150,.12)}
+.dx-next__line h3{padding-top:8px;color:var(--dx-ivory)!important}
+.dx-next__line p{margin:0}
+@media (min-width:880px){
+  .dx-next__line{grid-template-columns:repeat(3,1fr);gap:28px}
+  .dx-next__line li{padding:72px 0 0 0}
+  .dx-next__line li::before{left:60px;right:-28px;top:23px;bottom:auto;width:auto;height:2px}
 }
 </style>
+<div class="dx__rings" aria-hidden="true"></div>
 <div class="dx__in">
-  <p class="dx__eyebrow">After you submit</p>
-  <h2 id="dx-next-title">What happens <em>next</em></h2>
+  <div data-reveal>
+    <p class="dx__eyebrow">After you submit</p>
+    <h2 id="dx-next-title">What happens <em>next.</em></h2>
+  </div>
   <ol class="dx-next__line">
-    <li><span class="dx-next__dot" aria-hidden="true">1</span><h3>Our team reviews your documents</h3><p>Once you submit, our team reviews everything you've uploaded.</p></li>
-    <li><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
-    <li><span class="dx-next__dot" aria-hidden="true">3</span><h3>You book your assessment call</h3><p>Once everything is ready, we'll email you a private link to book your assessment call.</p></li>
+    <li data-reveal><span class="dx-next__dot" aria-hidden="true">1</span><h3>Our team reviews your documents</h3><p>Once you submit, our team reviews everything you've uploaded.</p></li>
+    <li data-reveal><span class="dx-next__dot" aria-hidden="true">2</span><h3>We'll tell you if anything is missing</h3><p>If anything is missing, we'll let you know.</p></li>
+    <li data-reveal><span class="dx-next__dot" aria-hidden="true">3</span><h3>You book your assessment call</h3><p>Once everything is ready, we'll email you a private link to book your assessment call.</p></li>
   </ol>
 </div>
 </section>

@@ -1,102 +1,158 @@
 <!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
+<!-- Includes the floating progress pill (bottom of screen) that follows visitors down the page. -->
 <section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
-/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+/* Distinct brand tokens (DTCG Canva designs, Nov 2026). Dark teal leads; gold accents; white for reading areas. */
+.dx{--dx-teal:#003b42;--dx-deep:#01262b;--dx-teal-hi:#04333a;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-champ-hi:#f1e2b8;--dx-ivory:#f3ede1;--dx-mist:#c9d6d2;--dx-body:#3b4f52;--dx-white:#ffffff;--dx-tint:#f2f6f6;
+  --dx-grad:linear-gradient(135deg,#04333a 0%,#003b42 45%,#01262b 100%);
+  --dx-goldgrad:linear-gradient(135deg,#f1e2b8 0%,#e6cd96 55%,#d9b878 100%);
+  --dx-line:rgba(177,129,50,.35);--dx-line-lt:rgba(230,205,150,.35);--dx-r:20px;--dx-r-sm:14px;
+  position:relative;display:block;box-sizing:border-box;overflow:hidden;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-white);padding:64px 20px;scroll-margin-top:12px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
-.dx__in{max-width:980px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.01em}
-.dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
-.dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
+.dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
 .dx strong{color:var(--dx-teal)}
-/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
 .dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
-/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
+.dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
+.dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
+/* Teal sections: the brand's lead surface */
+.dx--teal{background:var(--dx-grad);color:var(--dx-mist)}
+.dx--deep{background:var(--dx-deep);color:var(--dx-mist)}
+.dx--teal h1,.dx--teal h2,.dx--teal h3,.dx--teal strong,.dx--deep h1,.dx--deep h2,.dx--deep h3,.dx--deep strong{color:var(--dx-ivory)}
+.dx--teal h1 em,.dx--teal h2 em,.dx--deep h1 em,.dx--deep h2 em{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow,.dx--deep .dx__eyebrow{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow::before,.dx--deep .dx__eyebrow::before{background:var(--dx-champ)}
+.dx--tint{background:var(--dx-tint)}
+/* Signature: double hairline frame + concentric circles (business cards, decks) */
 .dx__framed{position:relative}
-.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
-.dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
-.dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
-.dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
-.dx__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;border:2px solid var(--dx-teal);background:var(--dx-teal);color:var(--dx-cream)!important;font:500 1rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.02em;text-decoration:none!important;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;width:100%}
-.dx__btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(0,59,66,.55)}
-.dx__btn--ghost{background:transparent;color:var(--dx-teal)!important}
-.dx__btn--soft{background:var(--dx-champ);border-color:var(--dx-champ);color:var(--dx-teal)!important}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 5px);pointer-events:none}
+.dx--teal .dx__framed::after,.dx--deep .dx__framed::after,.dx__framed--lt::after{border-color:var(--dx-line-lt)}
+.dx__rings{position:absolute;z-index:0;width:560px;height:560px;border-radius:50%;border:1px solid rgba(230,205,150,.22);pointer-events:none}
+.dx__rings::before,.dx__rings::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(230,205,150,.16)}
+.dx__rings::before{inset:70px}.dx__rings::after{inset:140px}
+/* Buttons */
+.dx__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:14px 28px;border-radius:999px;border:2px solid var(--dx-teal);background:var(--dx-teal);color:var(--dx-ivory)!important;font:500 1rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.03em;text-decoration:none!important;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;width:100%}
+.dx__btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(1,38,43,.7)}
+.dx__btn--gold{background:var(--dx-goldgrad);border-color:transparent;color:var(--dx-teal)!important;font-weight:700}
+.dx__btn--gold:hover{box-shadow:0 14px 30px -12px rgba(230,205,150,.55)}
+.dx__btn--line{background:transparent;color:var(--dx-teal)!important}
+.dx--teal .dx__btn--line,.dx--deep .dx__btn--line{border-color:var(--dx-champ);color:var(--dx-champ)!important}
 .dx__btn svg{width:18px;height:18px;flex:none}
-.dx a:focus-visible,.dx button:focus-visible,.dx input:focus-visible+label,.dx input:focus-visible{outline:3px solid var(--dx-gold);outline-offset:3px}
-.dx__link{color:var(--dx-teal);font-weight:500;text-decoration:underline;text-decoration-color:var(--dx-gold);text-underline-offset:4px}
-.dx__card{background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r);padding:24px}
+.dx__link{color:var(--dx-teal);font-weight:500;text-decoration:underline;text-decoration-color:var(--dx-gold);text-decoration-thickness:2px;text-underline-offset:5px}
+.dx--teal .dx__link,.dx--deep .dx__link{color:var(--dx-champ);text-decoration-color:var(--dx-champ)}
+.dx a:focus-visible,.dx button:focus-visible,.dx input:focus-visible{outline:3px solid var(--dx-gold);outline-offset:3px}
+.dx--teal a:focus-visible,.dx--teal button:focus-visible,.dx--teal input:focus-visible,.dx--deep a:focus-visible,.dx--deep button:focus-visible{outline-color:var(--dx-champ)}
 .dx__sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (min-width:640px){.dx{padding:80px 32px}.dx__btn{width:auto}}
-@media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}}
-.dx-steps__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
-.dx-steps__progress{min-width:220px;flex:1 1 220px;max-width:320px}
-.dx-steps__progress p{font-weight:500;font-size:.92rem;margin:0 0 8px}
-.dx-steps__bar{height:8px;border-radius:99px;background:var(--dx-ivory);overflow:hidden}
-.dx-steps__bar span{display:block;height:100%;width:0;border-radius:99px;background:var(--dx-gold);transition:width .4s ease}
-.dx-steps__list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
-.dx-step{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r);padding:26px 22px 22px;transition:border-color .25s ease,background .25s ease}
-.dx-step__num{font-weight:700;font-size:2.6rem;line-height:1;color:var(--dx-gold);margin-bottom:8px;font-variant-numeric:tabular-nums}
-.dx-step p{color:var(--dx-soft);margin-bottom:18px;flex:1}
-.dx-step__done{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.92rem;font-weight:500;cursor:pointer;user-select:none}
-.dx-step__done input{width:22px;height:22px;accent-color:var(--dx-teal);margin:0;cursor:pointer}
-.dx-step.is-done{background:rgba(230,205,150,.22);border-color:var(--dx-gold)}
-.dx-step.is-done .dx-step__num::after{content:" ✓";font-size:1.4rem;color:var(--dx-teal)}
-@media (min-width:820px){.dx-steps__list{grid-template-columns:repeat(3,1fr)}}
+/* Gentle reveal on scroll (only when the global head script runs) */
+.dx-js .dx [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
+@media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
+@media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+.dx-steps__head{display:grid;gap:20px;margin-bottom:34px}
+.dx-steps__meter{display:flex;align-items:center;gap:16px;background:var(--dx-tint);border-radius:999px;padding:10px 18px 10px 10px;max-width:420px}
+.dx-steps__ring{--p:0;width:52px;height:52px;flex:none;border-radius:50%;background:conic-gradient(var(--dx-gold) calc(var(--p)*1%),rgba(0,59,66,.12) 0);display:grid;place-items:center;transition:--p .5s}
+.dx-steps__ring span{width:40px;height:40px;border-radius:50%;background:var(--dx-white);display:grid;place-items:center;font-weight:700;color:var(--dx-teal);font-size:.95rem}
+.dx-steps__meter p{margin:0;font-weight:500;color:var(--dx-teal)}
+.dx-steps__list{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.dx-step{position:relative;display:flex;flex-direction:column;background:var(--dx-grad);border-radius:var(--dx-r);padding:30px 24px 24px;color:var(--dx-mist);overflow:hidden;box-shadow:0 24px 50px -30px rgba(1,38,43,.8);transition:transform .25s ease}
+.dx-step:hover{transform:translateY(-3px)}
+.dx-step::after{content:"";position:absolute;inset:8px;border:1px solid rgba(230,205,150,.25);border-radius:15px;pointer-events:none}
+.dx-step__num{font-weight:700;font-size:4.2rem;line-height:.85;letter-spacing:-.04em;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
+.dx-step strong{color:var(--dx-champ)}
+.dx-step h3{color:var(--dx-ivory)!important;font-size:1.3rem}
+.dx-step p{flex:1;margin-bottom:22px}
+.dx-step__done{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.92rem;font-weight:500;color:var(--dx-ivory);cursor:pointer}
+.dx-step__done input{width:22px;height:22px;margin:0;accent-color:var(--dx-champ);cursor:pointer}
+.dx-step .dx__btn{position:relative;z-index:1}
+.dx-step__badge{position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;background:var(--dx-goldgrad);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:all .3s ease}
+.dx-step__badge svg{width:18px;height:18px;stroke:var(--dx-teal)}
+.dx-step.is-done .dx-step__badge{opacity:1;transform:none}
+.dx-step.is-done{box-shadow:0 0 0 2px var(--dx-champ),0 24px 50px -30px rgba(1,38,43,.8)}
+/* Floating progress pill */
+.dx-pill{position:fixed;z-index:9999;left:50%;bottom:14px;transform:translate(-50%,140%);display:flex;align-items:center;gap:12px;max-width:calc(100% - 24px);padding:8px 8px 8px 16px;border-radius:999px;background:var(--dx-deep);border:1px solid rgba(230,205,150,.4);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);font:500 .9rem/1.2 'Jost',system-ui,sans-serif;color:var(--dx-ivory);transition:transform .35s ease}
+.dx-pill.is-on{transform:translate(-50%,0)}
+.dx-pill__dots{display:flex;gap:6px}
+.dx-pill__dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--dx-champ)}
+.dx-pill__dots i.on{background:var(--dx-champ)}
+.dx-pill a{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border-radius:999px;background:var(--dx-goldgrad);color:var(--dx-teal)!important;font-weight:700;text-decoration:none!important;white-space:nowrap}
+.dx-pill a:focus-visible{outline:3px solid var(--dx-champ);outline-offset:3px}
+@media (max-width:420px){.dx-pill__label{display:none}}
+@media (min-width:860px){.dx-steps__head{grid-template-columns:1fr auto;align-items:end}.dx-steps__list{grid-template-columns:repeat(3,1fr)}}
 </style>
 <div class="dx__in">
-  <div class="dx-steps__head">
+  <div class="dx-steps__head" data-reveal>
     <div>
       <p class="dx__eyebrow">Your next steps</p>
-      <h2 id="dx-steps-title">Three steps to get <em>ready</em></h2>
+      <h2 id="dx-steps-title">Three steps to get <em>ready.</em></h2>
       <p class="dx__sub" style="margin:0">Work through these in order. Each button takes you to the right spot on this page.</p>
     </div>
-    <div class="dx-steps__progress">
+    <div class="dx-steps__meter">
+      <div class="dx-steps__ring" data-dx-ring aria-hidden="true"><span data-dx-steps-count-ring>0</span></div>
       <p aria-live="polite"><span data-dx-steps-count>0</span> of 3 steps done</p>
-      <div class="dx-steps__bar" aria-hidden="true"><span data-dx-steps-bar></span></div>
     </div>
   </div>
   <ol class="dx-steps__list">
-    <li class="dx-step" data-dx-step="1">
+    <li class="dx-step" data-dx-step="1" data-dx-target="#welcome-video" data-dx-label="Watch the welcome video" data-reveal>
+      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
       <span class="dx-step__num" aria-hidden="true">01</span>
       <h3><span class="dx__sr">Step 1: </span>Watch the welcome video</h3>
       <p>A short welcome from our team before you get started.</p>
-      <a class="dx__btn" href="#welcome-video">Go to step 1</a>
+      <a class="dx__btn dx__btn--gold" href="#welcome-video">Go to step 1</a>
       <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
     </li>
-    <li class="dx-step" data-dx-step="2">
+    <li class="dx-step" data-dx-step="2" data-dx-target="#taxdome-video" data-dx-label="Set up TaxDome" data-reveal>
+      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
       <span class="dx-step__num" aria-hidden="true">02</span>
       <h3><span class="dx__sr">Step 2: </span>Set up your secure TaxDome portal</h3>
       <p>Your portal is where you'll complete your organizer and upload your documents.</p>
-      <a class="dx__btn" href="#taxdome-video">Go to step 2</a>
+      <a class="dx__btn dx__btn--gold" href="#taxdome-video">Go to step 2</a>
       <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
     </li>
-    <li class="dx-step" data-dx-step="3">
+    <li class="dx-step" data-dx-step="3" data-dx-target="#checklist" data-dx-label="Organizer + documents" data-reveal>
+      <span class="dx-step__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
       <span class="dx-step__num" aria-hidden="true">03</span>
       <h3><span class="dx__sr">Step 3: </span>Complete your organizer and upload your documents</h3>
       <p>See exactly what to gather, what it looks like and where to find it.</p>
-      <a class="dx__btn" href="#checklist">Go to step 3</a>
+      <a class="dx__btn dx__btn--gold" href="#checklist">Go to step 3</a>
       <label class="dx-step__done"><input type="checkbox" data-dx-step-check> I've done this</label>
     </li>
   </ol>
 </div>
+<nav class="dx-pill" aria-label="Your progress" data-dx-pill>
+  <span class="dx-pill__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="dx-pill__label" data-dx-pill-label>0 of 3 done</span>
+  <a href="#welcome-video" data-dx-pill-link>Next: Watch the welcome video</a>
+</nav>
 <script>
 (function(){
   var root=document.getElementById('steps'); if(!root) return;
   var KEY='dx-next-steps-progress', items=root.querySelectorAll('[data-dx-step]');
-  var count=root.querySelector('[data-dx-steps-count]'), bar=root.querySelector('[data-dx-steps-bar]');
+  var count=root.querySelector('[data-dx-steps-count]'), ringN=root.querySelector('[data-dx-steps-count-ring]'), ring=root.querySelector('[data-dx-ring]');
+  var pill=root.querySelector('[data-dx-pill]'), dots=pill.querySelectorAll('i'), pLabel=pill.querySelector('[data-dx-pill-label]'), pLink=pill.querySelector('[data-dx-pill-link]');
   var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
   function update(){
-    var n=0;
-    items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');li.classList.toggle('is-done',cb.checked);if(cb.checked)n++;saved[li.getAttribute('data-dx-step')]=cb.checked;});
-    count.textContent=n; bar.style.width=(n/items.length*100)+'%';
+    var n=0,next=null;
+    items.forEach(function(li,i){var cb=li.querySelector('[data-dx-step-check]');li.classList.toggle('is-done',cb.checked);dots[i].classList.toggle('on',cb.checked);if(cb.checked)n++;else if(!next)next=li;saved[li.getAttribute('data-dx-step')]=cb.checked;});
+    count.textContent=n; ringN.textContent=n; ring.style.setProperty('--p',Math.round(n/items.length*100));
+    pLabel.textContent=n+' of 3 done';
+    if(next){pLink.href=next.getAttribute('data-dx-target');pLink.textContent='Next: '+next.getAttribute('data-dx-label');}
+    else{pLink.href='#what-next';pLink.textContent='All set: what happens next';}
     try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
   }
   items.forEach(function(li){var cb=li.querySelector('[data-dx-step-check]');cb.checked=!!saved[li.getAttribute('data-dx-step')];cb.addEventListener('change',update);});
   update();
+  function onScroll(){
+    var top=root.getBoundingClientRect().top, foot=document.getElementById('footer');
+    var footIn=foot?foot.getBoundingClientRect().top<window.innerHeight:false;
+    pill.classList.toggle('is-on',top<-200&&!footIn);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 })();
 </script>
 </section>

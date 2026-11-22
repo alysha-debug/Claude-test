@@ -2,20 +2,20 @@
 <section id="security" class="dx dx-sec" tabindex="-1" aria-labelledby="dx-sec-title">
 <style>
 /*BASE*/
-.dx-sec{background:var(--dx-white)}
-.dx-sec__card{display:grid;gap:18px;border:2px solid var(--dx-teal);border-radius:calc(var(--dx-r) + 6px);padding:28px 22px;background:var(--dx-cream)}
-.dx-sec__icon{width:64px;height:64px;border-radius:50%;background:var(--dx-teal);display:grid;place-items:center}
-.dx-sec__icon svg{width:30px;height:30px;stroke:var(--dx-cream)}
-.dx-sec__card p{font-size:1.08rem}
-@media (min-width:760px){.dx-sec__card{grid-template-columns:auto 1fr auto;align-items:center;gap:28px;padding:32px 36px}.dx-sec__card p{margin:0}}
+.dx-sec__card{display:grid;gap:20px;align-items:center;padding:30px 24px;border-radius:24px;background:var(--dx-white);border:2px solid var(--dx-teal);box-shadow:0 30px 60px -44px rgba(1,38,43,.8)}
+.dx-sec__icon{width:72px;height:72px;border-radius:50%;background:var(--dx-grad);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(0,59,66,.08)}
+.dx-sec__icon svg{width:32px;height:32px;stroke:var(--dx-champ)}
+.dx-sec__card h2{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:8px}
+.dx-sec__card p{font-size:1.08rem;margin:0}
+@media (min-width:800px){.dx-sec__card{grid-template-columns:auto 1fr auto;gap:30px;padding:36px 40px}}
 </style>
 <div class="dx__in">
-  <div class="dx-sec__card">
+  <div class="dx-sec__card" data-reveal>
     <div class="dx-sec__icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
     </div>
     <div>
-      <h2 id="dx-sec-title">Keep your documents <em>secure</em></h2>
+      <h2 id="dx-sec-title">Keep your documents <em>secure.</em></h2>
       <p>For your security, upload tax documents only in TaxDome. Never send them by regular email or text.</p>
     </div>
     <a class="dx__btn" href="[TAXDOME PORTAL LINK]" target="_blank" rel="noopener">Log in to TaxDome<span class="dx__sr">(opens in a new tab)</span></a>

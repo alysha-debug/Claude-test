@@ -2,50 +2,71 @@
 <section id="security" class="dx dx-sec" tabindex="-1" aria-labelledby="dx-sec-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
-/* Distinct brand tokens (from DTCG Canva designs, Nov 2026: Experience Guide, Capability Statement, Letterhead, Business Cards) */
-.dx{--dx-teal:#003b42;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-ivory:#f3ede1;--dx-cream:#fbf8f2;--dx-white:#ffffff;--dx-sage:#8fa5a2;--dx-line:rgba(177,129,50,.30);--dx-body:#3b4f52;--dx-soft:#3b4f52;--dx-r:18px;--dx-r-sm:12px;
-  display:block;box-sizing:border-box;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-cream);padding:56px 20px;scroll-margin-top:16px;-webkit-font-smoothing:antialiased}
+/* Distinct brand tokens (DTCG Canva designs, Nov 2026). Dark teal leads; gold accents; white for reading areas. */
+.dx{--dx-teal:#003b42;--dx-deep:#01262b;--dx-teal-hi:#04333a;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-champ-hi:#f1e2b8;--dx-ivory:#f3ede1;--dx-mist:#c9d6d2;--dx-body:#3b4f52;--dx-white:#ffffff;--dx-tint:#f2f6f6;
+  --dx-grad:linear-gradient(135deg,#04333a 0%,#003b42 45%,#01262b 100%);
+  --dx-goldgrad:linear-gradient(135deg,#f1e2b8 0%,#e6cd96 55%,#d9b878 100%);
+  --dx-line:rgba(177,129,50,.35);--dx-line-lt:rgba(230,205,150,.35);--dx-r:20px;--dx-r-sm:14px;
+  position:relative;display:block;box-sizing:border-box;overflow:hidden;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-white);padding:64px 20px;scroll-margin-top:12px;-webkit-font-smoothing:antialiased}
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
-.dx__in{max-width:980px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.01em}
-.dx h2{font-size:clamp(1.65rem,5.2vw,2.4rem);line-height:1.15;margin-bottom:14px}
-.dx h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
+.dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
 .dx p{margin:0 0 14px}
 .dx strong{color:var(--dx-teal)}
-/* Brand accent: italic gold word inside headings (large text only: gold passes 3:1 at heading size) */
 .dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
-/* Brand signature: double hairline inset frame, as on Distinct cards and decks */
+.dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
+.dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
+.dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
+/* Teal sections: the brand's lead surface */
+.dx--teal{background:var(--dx-grad);color:var(--dx-mist)}
+.dx--deep{background:var(--dx-deep);color:var(--dx-mist)}
+.dx--teal h1,.dx--teal h2,.dx--teal h3,.dx--teal strong,.dx--deep h1,.dx--deep h2,.dx--deep h3,.dx--deep strong{color:var(--dx-ivory)}
+.dx--teal h1 em,.dx--teal h2 em,.dx--deep h1 em,.dx--deep h2 em{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow,.dx--deep .dx__eyebrow{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow::before,.dx--deep .dx__eyebrow::before{background:var(--dx-champ)}
+.dx--tint{background:var(--dx-tint)}
+/* Signature: double hairline frame + concentric circles (business cards, decks) */
 .dx__framed{position:relative}
-.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 4px);pointer-events:none}
-.dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dx-gold-dk)}
-.dx__eyebrow::before{content:"";flex:0 0 40px;height:2px;border-radius:2px;background:var(--dx-gold)}
-.dx__sub{font-weight:500;font-size:1.08rem;color:var(--dx-soft);max-width:640px}
-.dx__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;border:2px solid var(--dx-teal);background:var(--dx-teal);color:var(--dx-cream)!important;font:500 1rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.02em;text-decoration:none!important;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;width:100%}
-.dx__btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(0,59,66,.55)}
-.dx__btn--ghost{background:transparent;color:var(--dx-teal)!important}
-.dx__btn--soft{background:var(--dx-champ);border-color:var(--dx-champ);color:var(--dx-teal)!important}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 5px);pointer-events:none}
+.dx--teal .dx__framed::after,.dx--deep .dx__framed::after,.dx__framed--lt::after{border-color:var(--dx-line-lt)}
+.dx__rings{position:absolute;z-index:0;width:560px;height:560px;border-radius:50%;border:1px solid rgba(230,205,150,.22);pointer-events:none}
+.dx__rings::before,.dx__rings::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(230,205,150,.16)}
+.dx__rings::before{inset:70px}.dx__rings::after{inset:140px}
+/* Buttons */
+.dx__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:14px 28px;border-radius:999px;border:2px solid var(--dx-teal);background:var(--dx-teal);color:var(--dx-ivory)!important;font:500 1rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.03em;text-decoration:none!important;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;width:100%}
+.dx__btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(1,38,43,.7)}
+.dx__btn--gold{background:var(--dx-goldgrad);border-color:transparent;color:var(--dx-teal)!important;font-weight:700}
+.dx__btn--gold:hover{box-shadow:0 14px 30px -12px rgba(230,205,150,.55)}
+.dx__btn--line{background:transparent;color:var(--dx-teal)!important}
+.dx--teal .dx__btn--line,.dx--deep .dx__btn--line{border-color:var(--dx-champ);color:var(--dx-champ)!important}
 .dx__btn svg{width:18px;height:18px;flex:none}
-.dx a:focus-visible,.dx button:focus-visible,.dx input:focus-visible+label,.dx input:focus-visible{outline:3px solid var(--dx-gold);outline-offset:3px}
-.dx__link{color:var(--dx-teal);font-weight:500;text-decoration:underline;text-decoration-color:var(--dx-gold);text-underline-offset:4px}
-.dx__card{background:var(--dx-white);border:1px solid var(--dx-line);border-radius:var(--dx-r);padding:24px}
+.dx__link{color:var(--dx-teal);font-weight:500;text-decoration:underline;text-decoration-color:var(--dx-gold);text-decoration-thickness:2px;text-underline-offset:5px}
+.dx--teal .dx__link,.dx--deep .dx__link{color:var(--dx-champ);text-decoration-color:var(--dx-champ)}
+.dx a:focus-visible,.dx button:focus-visible,.dx input:focus-visible{outline:3px solid var(--dx-gold);outline-offset:3px}
+.dx--teal a:focus-visible,.dx--teal button:focus-visible,.dx--teal input:focus-visible,.dx--deep a:focus-visible,.dx--deep button:focus-visible{outline-color:var(--dx-champ)}
 .dx__sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (min-width:640px){.dx{padding:80px 32px}.dx__btn{width:auto}}
-@media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}}
-.dx-sec{background:var(--dx-white)}
-.dx-sec__card{display:grid;gap:18px;border:2px solid var(--dx-teal);border-radius:calc(var(--dx-r) + 6px);padding:28px 22px;background:var(--dx-cream)}
-.dx-sec__icon{width:64px;height:64px;border-radius:50%;background:var(--dx-teal);display:grid;place-items:center}
-.dx-sec__icon svg{width:30px;height:30px;stroke:var(--dx-cream)}
-.dx-sec__card p{font-size:1.08rem}
-@media (min-width:760px){.dx-sec__card{grid-template-columns:auto 1fr auto;align-items:center;gap:28px;padding:32px 36px}.dx-sec__card p{margin:0}}
+/* Gentle reveal on scroll (only when the global head script runs) */
+.dx-js .dx [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
+@media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
+@media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+.dx-sec__card{display:grid;gap:20px;align-items:center;padding:30px 24px;border-radius:24px;background:var(--dx-white);border:2px solid var(--dx-teal);box-shadow:0 30px 60px -44px rgba(1,38,43,.8)}
+.dx-sec__icon{width:72px;height:72px;border-radius:50%;background:var(--dx-grad);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(0,59,66,.08)}
+.dx-sec__icon svg{width:32px;height:32px;stroke:var(--dx-champ)}
+.dx-sec__card h2{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:8px}
+.dx-sec__card p{font-size:1.08rem;margin:0}
+@media (min-width:800px){.dx-sec__card{grid-template-columns:auto 1fr auto;gap:30px;padding:36px 40px}}
 </style>
 <div class="dx__in">
-  <div class="dx-sec__card">
+  <div class="dx-sec__card" data-reveal>
     <div class="dx-sec__icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
     </div>
     <div>
-      <h2 id="dx-sec-title">Keep your documents <em>secure</em></h2>
+      <h2 id="dx-sec-title">Keep your documents <em>secure.</em></h2>
       <p>For your security, upload tax documents only in TaxDome. Never send them by regular email or text.</p>
     </div>
     <a class="dx__btn" href="[TAXDOME PORTAL LINK]" target="_blank" rel="noopener">Log in to TaxDome<span class="dx__sr">(opens in a new tab)</span></a>
