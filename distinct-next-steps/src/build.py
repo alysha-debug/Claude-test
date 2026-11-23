@@ -35,7 +35,7 @@ outdir = ROOT / "ghl-blocks"; outdir.mkdir(exist_ok=True)
 for f in sections:
     code = f.read_text().replace("/*BASE*/", base).replace("/*MOTION*/", motion).strip()
     (outdir / f.name).write_text(code + "\n")
-    title = re.search(r"SECTION (\d+): ([^(]+)\((#[\w-]+)\)", code)
+    title = re.search(r"SECTION (\d+[A-Z]?): ([^(]+)\((#[\w-]+)\)", code)
     blocks.append((f.name, title.group(1), title.group(2).strip(), title.group(3), code))
 (outdir / "00-global-head.html").write_text(HEAD_BLOCK + "\n")
 
@@ -56,7 +56,8 @@ preview = f"""<!doctype html>
 (ROOT / "index.html").write_text(preview)
 
 notes = {
- "1": "Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and the gold keyword ribbon (with Pause motion button). This is the only H1 on the page.",
+ "1": "Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and its Pause motion button. This is the only H1 on the page.",
+ "1B": "Section: full width, background #01262B, padding 0. The transformation moment: plays once when it scrolls into view, with a See it again button. Paste it directly under Section 1.",
  "2": "Section: full width, background #FFFFFF, padding 0. Teal flip cards (tap to turn over).",
  "3": "Section: full width, background #003B42, padding 0. When the video is ready, swap the placeholder for the embed (see the comment in the code).",
  "4": "Section: full width, background #FFFFFF, padding 0. Leave href=\"[TAXDOME PORTAL LINK]\" until you have the TaxDome login URL.",

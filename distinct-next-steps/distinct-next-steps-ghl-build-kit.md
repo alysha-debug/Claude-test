@@ -2,10 +2,10 @@
 
 Post-payment thank-you step for Distinct Tax Consulting Group®. It sits right after the $500 Distinct® Tax Assessment checkout.
 
-- **Layout:** single page, mobile-first, 10 sections. Each section is one GHL **Custom Code** element.
+- **Layout:** single page, mobile-first, 11 sections (1, 1B, then 2 through 10). Each section is one GHL **Custom Code** element.
 - **Self-contained:** each block carries its own CSS (brand tokens included) and its own small vanilla script where needed. There are no external frameworks. Jost is the only external file, loaded from Google Fonts.
 - **Live preview:** `index.html`, the whole page assembled from these same blocks.
-- **Paste-ready files:** `ghl-blocks/00-global-head.html` to `ghl-blocks/10-footer.html`. These are the same code as below.
+- **Paste-ready files:** `ghl-blocks/00-global-head.html` to `ghl-blocks/10-footer.html` (including `01b-transformation.html`). These are the same code as below.
 
 ## Brand palette in use
 
@@ -35,10 +35,10 @@ Colors come from your Canva designs from Nov 5, 2026 onward: Business Cards, Cap
 
 **Moving parts (no checkboxes, nothing to save):**
 - **Turning words:** the hero promise flips through *Highly valued. → Financially redefined. → Peace of mind obtained.* The organizer card cycles *main business → side businesses → rentals → nonprofits.*
-- **Keyword ribbon:** a gold band under the hero scrolls *Highly valued · Financially redefined · Peace of mind obtained · Protect more · Keep more · Build more · Judgment-free · Clarity · Confidence · Legacy.*
+- **The transformation (Section 1B, right after the hero):** six tiles start as the burdens people arrive with: *Worry, Confusion, Guessing, Feeling behind, Carrying it alone, Shame.* As the section scrolls into view, a gold line strikes through each one in turn, and it becomes its outcome: *Peace of mind, Clarity, A plan, Moving forward, A team beside you, No judgment.* A soft gold "sunrise" glow rises behind them. It plays once, with a "See it again" button. It is not a loop.
 - **Flip cards:** the 3 step cards and 3 document cards turn over on tap or click. The first card gives a small "peek" turn when it comes into view, to show it flips.
 - **Scroll-in:** sections slide in gently as visitors scroll.
-- **Accessibility:** moving words and the ribbon have a **Pause motion** button and stop on hover. Visitors who turn on "reduce motion" see the words written out, with nothing moving. Nothing strobes, and there are no countdown timers.
+- **Accessibility:** the turning words have a **Pause motion** button and stop on hover. Visitors who turn on "reduce motion" see the words written out and the transformation already complete, with nothing moving. Nothing strobes, and there are no countdown timers.
 
 **Distinct® keywords on the page and where they come from:**
 - **The Distinct® Experience:** Client Onboarding Master Deck p1 and Experience Guide
@@ -52,7 +52,7 @@ Colors come from your Canva designs from Nov 5, 2026 onward: Business Cards, Cap
 
 ## Anchors
 
-`#welcome` · `#steps` · `#welcome-video` · `#taxdome-video` · `#checklist` · `#organizer` · `#deadline` · `#what-next` · `#security` · `#footer`
+`#welcome` · `#transformation` · `#steps` · `#welcome-video` · `#taxdome-video` · `#checklist` · `#organizer` · `#deadline` · `#what-next` · `#security` · `#footer`
 
 Every section is a real landmark with a heading, so keyboard and screen-reader users land in the right place when they follow an anchor link. It has `tabindex="-1"` and a `scroll-margin-top` offset.
 
@@ -88,7 +88,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 
 ## SECTION 1: Welcome (`#welcome`)
 
-**GHL build note:** Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and the gold keyword ribbon (with Pause motion button). This is the only H1 on the page. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/01-welcome.html`.
+**GHL build note:** Section: full width, background #003B42, padding 0. Dark-teal hero with the turning promise line and its Pause motion button. This is the only H1 on the page. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/01-welcome.html`.
 
 ```html
 <!-- ===== SECTION 1: WELCOME (#welcome) ===== -->
@@ -104,12 +104,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -146,7 +146,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -172,21 +172,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-hero{padding-top:28px;padding-bottom:72px}
@@ -198,12 +188,9 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-ph--logo{display:flex;align-items:center;justify-content:center;text-align:center;width:230px;min-height:88px;padding:12px;border:2px dashed var(--dx-champ);border-radius:var(--dx-r-sm);color:var(--dx-champ);font:500 .85rem/1.35 'Jost',system-ui,sans-serif}
 .dx-hero__grid{display:grid;gap:34px;align-items:end}
 .dx-hero h1{font-size:clamp(2.6rem,11vw,5.2rem);line-height:.98;letter-spacing:-.03em;margin-bottom:22px}
-.dx-hero{padding-bottom:0!important}
 .dx-hero__promise{display:block;margin:30px 0 22px;font-weight:700;font-style:italic;font-size:clamp(1.5rem,5.6vw,2.4rem);line-height:1.15;color:var(--dx-champ)}
 .dx-hero__promise small{display:block;font-style:normal;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-mist);margin-bottom:6px}
-.dx-hero__ribbon{margin:64px -20px 0;position:relative;z-index:1}
-@media (min-width:640px){.dx-hero__ribbon{margin-left:-32px;margin-right:-32px}}
-.dx-hero__ribbon .dx__pause{position:absolute;right:24px;top:-50px;color:var(--dx-champ)}
+.dx-hero__pause{margin:-8px 0 24px;color:var(--dx-champ)}
 .dx-hero__lead{font-size:1.15rem;color:var(--dx-ivory);max-width:560px;margin-bottom:30px}
 .dx-hero__actions{display:flex;flex-wrap:wrap;gap:12px}
 .dx-hero__note{position:relative;background:rgba(243,237,225,.06);border:1px solid rgba(230,205,150,.3);border-radius:var(--dx-r);padding:28px 26px 24px;backdrop-filter:blur(2px)}
@@ -213,7 +200,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-hero__sig{display:flex;align-items:center;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(230,205,150,.25)}
 .dx-hero__sig b{display:block;color:var(--dx-champ);font-weight:500;font-size:1.05rem}
 .dx-hero__sig span{display:block;font-size:.88rem;color:var(--dx-mist)}
-@media (min-width:900px){.dx-hero__ribbon{margin-top:96px}.dx-hero__grid{grid-template-columns:1.25fr .9fr;gap:56px}}
+@media (min-width:900px){.dx-hero{padding-bottom:110px}.dx-hero__grid{grid-template-columns:1.25fr .9fr;gap:56px}}
 </style>
 <div class="dx-hero__frame" aria-hidden="true"></div>
 <div class="dx__rings" aria-hidden="true"></div>
@@ -231,6 +218,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       <h1 id="dx-welcome-title">You're in. Here's what happens <em>next.</em></h1>
       <p class="dx-hero__promise"><small>The Distinct® Experience</small>
         <span class="dx-rot" data-rot="2600"><span class="dx__sr">Highly valued. Financially redefined. Peace of mind obtained.</span><span class="dx-rot__win" aria-hidden="true"><span class="dx-rot__w">Highly valued.</span><span class="dx-rot__w">Financially redefined.</span><span class="dx-rot__w">Peace of mind obtained.</span></span></span></p>
+      <button type="button" class="dx__pause dx-hero__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
       <p class="dx-hero__lead">Three steps get you ready for your assessment call. Start with step one below.</p>
       <div class="dx-hero__actions">
         <a class="dx__btn dx__btn--gold" href="#steps">See your 3 steps
@@ -243,15 +231,6 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
       <p>Welcome, and thank you for trusting Distinct Tax Consulting Group® with your Distinct® Tax Assessment.</p>
       <p>Here's how we work: before we ever get on a call, our team reviews your documents. That way, our call is spent on what we found and what we can do about it.</p>
       <div class="dx-hero__sig"><div><b>Alysha</b><span>Founder and Managing Partner</span></div></div>
-    </div>
-  </div>
-</div>
-<div class="dx-hero__ribbon">
-  <button type="button" class="dx__pause" data-pause aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><span data-pause-label>Pause motion</span></button>
-  <div class="dx-ribbon" role="img" aria-label="Highly valued. Financially redefined. Peace of mind obtained. Protect more. Keep more. Build more. Judgment-free. Clarity. Confidence. Legacy.">
-    <div class="dx-ribbon__track" aria-hidden="true">
-      <span>Highly valued <i></i> Financially redefined <i></i> <em>Peace of mind obtained</em> <i></i> Protect more <i></i> Keep more <i></i> Build more <i></i> Judgment-free <i></i> Clarity <i></i> Confidence <i></i> Legacy <i></i></span>
-      <span>Highly valued <i></i> Financially redefined <i></i> <em>Peace of mind obtained</em> <i></i> Protect more <i></i> Keep more <i></i> Build more <i></i> Judgment-free <i></i> Clarity <i></i> Confidence <i></i> Legacy <i></i></span>
     </div>
   </div>
 </div>
@@ -275,7 +254,6 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     b.addEventListener('click',function(){
       paused=!paused; b.setAttribute('aria-pressed',paused);
       b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
-      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
     });
   });
   [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
@@ -305,14 +283,15 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 </section>
 ```
 
-## SECTION 2: Your 3 Steps (`#steps`)
+## SECTION 1B: Transformation (`#transformation`)
 
-**GHL build note:** Section: full width, background #FFFFFF, padding 0. Teal flip cards (tap to turn over). Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/02-steps.html`.
+**GHL build note:** Section: full width, background #01262B, padding 0. The transformation moment: plays once when it scrolls into view, with a See it again button. Paste it directly under Section 1. Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/01b-transformation.html`.
 
 ```html
-<!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
-<!-- Flip cards: tap/click (or Enter/Space on the flip button) to turn a card over. -->
-<section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
+<!-- ===== SECTION 1B: TRANSFORMATION (#transformation) ===== -->
+<!-- Plays once when it scrolls into view: each burden is struck through and becomes its Distinct® outcome,
+     while a gold "sunrise" glow rises behind. "See it again" replays it. Reduced-motion visitors see the final state. -->
+<section id="transformation" class="dx dx--deep dx-tx" tabindex="-1" aria-labelledby="dx-tx-title">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
 /* Distinct brand tokens (DTCG Canva designs, Nov 2026). Dark teal leads; gold accents; white for reading areas. */
@@ -324,12 +303,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -366,7 +345,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -392,21 +371,170 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
+  .dx__pause{display:none}
+}
+.dx-tx{padding-top:80px;padding-bottom:88px}
+.dx-tx__glow{position:absolute;left:50%;bottom:-55%;width:150%;height:110%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(230,205,150,.34),rgba(177,129,50,.14) 45%,rgba(1,38,43,0) 72%);opacity:0;transition:opacity 3.2s ease,bottom 3.6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:0}
+.dx-tx.is-go .dx-tx__glow,.dx-tx.is-done .dx-tx__glow{opacity:1;bottom:-30%}
+.dx-tx__head{max-width:760px;margin:0 auto 44px;text-align:center}
+.dx-tx__head .dx__eyebrow{justify-content:center;max-width:none}
+.dx-tx__head .dx__eyebrow::after{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-champ)}
+.dx-tx__head p:not(.dx__eyebrow){color:var(--dx-ivory);font-size:1.12rem;margin:0 auto;max-width:620px}
+.dx-tx__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dx-tx__item{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px;padding:22px 18px;border-radius:var(--dx-r);background:rgba(243,237,225,.04);border:1px solid rgba(230,205,150,.2);overflow:hidden;transition:background 1s ease,border-color 1s ease}
+.dx-tx__from{position:relative;align-self:flex-start;font-weight:500;font-size:.95rem;color:var(--dx-mist);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s ease,filter .7s ease;transform-origin:left bottom}
+.dx-tx__from::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;border-radius:2px;background:var(--dx-gold);transform:scaleX(1);transform-origin:left;transition:transform .55s ease}
+.dx-tx__to{display:block;margin-top:6px;font-weight:700;font-style:italic;font-size:clamp(1.35rem,4.6vw,1.9rem);line-height:1.1;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease}
+/* Armed (JS present, waiting): burden shown big, outcome hidden */
+.dx-tx.is-armed .dx-tx__from{transform:translateY(34px) scale(1.7);color:var(--dx-ivory)}
+.dx-tx.is-armed .dx-tx__from::after{transform:scaleX(0)}
+.dx-tx.is-armed .dx-tx__to{opacity:0;transform:translateY(16px);filter:blur(8px)}
+/* Go: strike, shrink, reveal — staggered per tile */
+.dx-tx.is-go .dx-tx__from{transform:none;color:var(--dx-mist);opacity:.75;transition-delay:calc(var(--i)*.5s + .45s)}
+.dx-tx.is-go .dx-tx__from::after{transform:scaleX(1);transition-delay:calc(var(--i)*.5s)}
+.dx-tx.is-go .dx-tx__to{opacity:1;transform:none;filter:none;transition-delay:calc(var(--i)*.5s + .65s)}
+.dx-tx.is-go .dx-tx__item{background:rgba(230,205,150,.07);border-color:rgba(230,205,150,.42);transition-delay:calc(var(--i)*.5s + .65s)}
+.dx-tx__close{margin:44px auto 0;text-align:center;max-width:760px}
+.dx-tx__close p{margin:0 0 20px;font-weight:700;font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.35;color:var(--dx-ivory)}
+.dx-tx__close em{font-style:italic;color:var(--dx-champ)}
+.dx-tx__replay{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 18px;border-radius:999px;border:1px solid rgba(230,205,150,.6);background:transparent;color:var(--dx-champ);font:500 .85rem/1 'Jost',system-ui,sans-serif;letter-spacing:.08em;cursor:pointer}
+.dx-tx__replay svg{width:16px;height:16px;stroke:currentColor}
+@media (min-width:760px){.dx-tx__list{grid-template-columns:repeat(3,1fr);gap:18px}.dx-tx__item{min-height:170px;padding:26px 24px}}
+@media (prefers-reduced-motion:reduce){.dx-tx__replay{display:none}}
+</style>
+<div class="dx-tx__glow" aria-hidden="true"></div>
+<div class="dx__in">
+  <div class="dx-tx__head" data-reveal>
+    <p class="dx__eyebrow">Your Distinct® Experience</p>
+    <h2 id="dx-tx-title">This is where it starts to <em>change.</em></h2>
+    <p>Whatever brought you here, whether it's unfiled years, letters from the IRS or books that fell behind, you don't have to carry it alone anymore.</p>
+  </div>
+  <ul class="dx-tx__list">
+    <li class="dx-tx__item" style="--i:0"><span class="dx__sr">Worry becomes peace of mind.</span><span class="dx-tx__from" aria-hidden="true">Worry</span><span class="dx-tx__to" aria-hidden="true">Peace of mind</span></li>
+    <li class="dx-tx__item" style="--i:1"><span class="dx__sr">Confusion becomes clarity.</span><span class="dx-tx__from" aria-hidden="true">Confusion</span><span class="dx-tx__to" aria-hidden="true">Clarity</span></li>
+    <li class="dx-tx__item" style="--i:2"><span class="dx__sr">Guessing becomes a plan.</span><span class="dx-tx__from" aria-hidden="true">Guessing</span><span class="dx-tx__to" aria-hidden="true">A plan</span></li>
+    <li class="dx-tx__item" style="--i:3"><span class="dx__sr">Feeling behind becomes moving forward.</span><span class="dx-tx__from" aria-hidden="true">Feeling behind</span><span class="dx-tx__to" aria-hidden="true">Moving forward</span></li>
+    <li class="dx-tx__item" style="--i:4"><span class="dx__sr">Carrying it alone becomes a team beside you.</span><span class="dx-tx__from" aria-hidden="true">Carrying it alone</span><span class="dx-tx__to" aria-hidden="true">A team beside you</span></li>
+    <li class="dx-tx__item" style="--i:5"><span class="dx__sr">Shame becomes no judgment.</span><span class="dx-tx__from" aria-hidden="true">Shame</span><span class="dx-tx__to" aria-hidden="true">No judgment</span></li>
+  </ul>
+  <div class="dx-tx__close" data-reveal>
+    <p>Highly valued. Financially redefined. <em>Peace of mind obtained.</em></p>
+    <button type="button" class="dx-tx__replay" data-tx-replay><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>See it again</button>
+  </div>
+</div>
+<script>
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){root.classList.add('is-done');return;}
+  root.classList.add('is-armed');
+  function play(){root.classList.remove('is-go');void root.offsetWidth;root.classList.add('is-go');}
+  var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){play();io.disconnect();}},{threshold:.35});
+  io.observe(root.querySelector('.dx-tx__list'));
+  var btn=root.querySelector('[data-tx-replay]');
+  if(btn) btn.addEventListener('click',function(){root.classList.remove('is-go');setTimeout(play,450);});
+})(document.currentScript&&document.currentScript.closest('.dx'));
+</script>
+</section>
+```
+
+## SECTION 2: Your 3 Steps (`#steps`)
+
+**GHL build note:** Section: full width, background #FFFFFF, padding 0. Teal flip cards (tap to turn over). Add a 1-column row, then a **Custom Code** element, and paste the block below. Paste-ready file: `ghl-blocks/02-steps.html`.
+
+```html
+<!-- ===== SECTION 2: YOUR 3 STEPS (#steps) ===== -->
+<!-- Flip cards: tap/click (or Enter/Space on the flip button) to turn a card over. -->
+<section id="steps" class="dx dx-steps" tabindex="-1" aria-labelledby="dx-steps-title">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap');
+/* Distinct brand tokens (DTCG Canva designs, Nov 2026). Dark teal leads; gold accents; white for reading areas. */
+.dx{--dx-teal:#003b42;--dx-deep:#01262b;--dx-teal-hi:#04333a;--dx-gold:#b18132;--dx-gold-dk:#96691c;--dx-champ:#e6cd96;--dx-champ-hi:#f1e2b8;--dx-ivory:#f3ede1;--dx-mist:#c9d6d2;--dx-body:#3b4f52;--dx-white:#ffffff;--dx-tint:#f2f6f6;
+  --dx-grad:linear-gradient(135deg,#04333a 0%,#003b42 45%,#01262b 100%);
+  --dx-goldgrad:linear-gradient(135deg,#f1e2b8 0%,#e6cd96 55%,#d9b878 100%);
+  --dx-line:rgba(177,129,50,.35);--dx-line-lt:rgba(230,205,150,.35);--dx-r:20px;--dx-r-sm:14px;
+  position:relative;display:block;box-sizing:border-box;overflow:hidden;font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--dx-body);background:var(--dx-white);padding:64px 20px;scroll-margin-top:12px;-webkit-font-smoothing:antialiased}
+.dx *,.dx *::before,.dx *::after{box-sizing:border-box}
+.dx:focus{outline:none}
+.dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+.dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
+.dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
+.dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
+/* Teal sections: the brand's lead surface */
+.dx--teal{background:var(--dx-grad);color:var(--dx-mist)}
+.dx--deep{background:var(--dx-deep);color:var(--dx-mist)}
+.dx--teal h1,.dx--teal h2,.dx--teal h3,.dx--teal strong,.dx--deep h1,.dx--deep h2,.dx--deep h3,.dx--deep strong{color:var(--dx-ivory)}
+.dx--teal h1 em,.dx--teal h2 em,.dx--deep h1 em,.dx--deep h2 em{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow,.dx--deep .dx__eyebrow{color:var(--dx-champ)}
+.dx--teal .dx__eyebrow::before,.dx--deep .dx__eyebrow::before{background:var(--dx-champ)}
+.dx--tint{background:var(--dx-tint)}
+/* Signature: double hairline frame + concentric circles (business cards, decks) */
+.dx__framed{position:relative}
+.dx__framed::after{content:"";position:absolute;inset:8px;border:1px solid var(--dx-line);border-radius:calc(var(--dx-r) - 5px);pointer-events:none}
+.dx--teal .dx__framed::after,.dx--deep .dx__framed::after,.dx__framed--lt::after{border-color:var(--dx-line-lt)}
+.dx__rings{position:absolute;z-index:0;width:560px;height:560px;border-radius:50%;border:1px solid rgba(230,205,150,.22);pointer-events:none}
+.dx__rings::before,.dx__rings::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(230,205,150,.16)}
+.dx__rings::before{inset:70px}.dx__rings::after{inset:140px}
+/* Buttons */
+.dx__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:14px 28px;border-radius:999px;border:2px solid var(--dx-teal);background:var(--dx-teal);color:var(--dx-ivory)!important;font:500 1rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.03em;text-decoration:none!important;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;width:100%}
+.dx__btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(1,38,43,.7)}
+.dx__btn--gold{background:var(--dx-goldgrad);border-color:transparent;color:var(--dx-teal)!important;font-weight:700}
+.dx__btn--gold:hover{box-shadow:0 14px 30px -12px rgba(230,205,150,.55)}
+.dx__btn--line{background:transparent;color:var(--dx-teal)!important}
+.dx--teal .dx__btn--line,.dx--deep .dx__btn--line{border-color:var(--dx-champ);color:var(--dx-champ)!important}
+.dx__btn svg{width:18px;height:18px;flex:none}
+.dx__link{color:var(--dx-teal);font-weight:500;text-decoration:underline;text-decoration-color:var(--dx-gold);text-decoration-thickness:2px;text-underline-offset:5px}
+.dx--teal .dx__link,.dx--deep .dx__link{color:var(--dx-champ);text-decoration-color:var(--dx-champ)}
+.dx a:focus-visible,.dx button:focus-visible,.dx input:focus-visible{outline:3px solid var(--dx-gold);outline-offset:3px}
+.dx--teal a:focus-visible,.dx--teal button:focus-visible,.dx--teal input:focus-visible,.dx--deep a:focus-visible,.dx--deep button:focus-visible{outline-color:var(--dx-champ)}
+.dx__sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Gentle reveal on scroll (only when the global head script runs) */
+.dx-js .dx [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
+@media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
+@media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
+.dx-rot{display:inline}
+.dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
+.dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
+.dx-rot__w.is-on{opacity:1;transform:none}
+.dx-rot__w.is-out{opacity:0;transform:rotateX(95deg);transform-origin:50% 0}
+.dx__pause{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:500 .78rem/1 'Jost',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;opacity:.85}
+.dx__pause:hover{opacity:1}
+.dx__pause svg{width:12px;height:12px;fill:currentColor}
+/* Flip cards (3D). Without JS both faces simply stack. */
+.dx-flips{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.dx-flip{perspective:1400px}
+.dx-flip__inner{display:grid}
+.dx-flip__face{grid-area:1/1;border-radius:var(--dx-r);overflow:hidden}
+.dx-flips.is-live .dx-flip__inner{transition:transform .85s cubic-bezier(.2,.75,.15,1);transform-style:preserve-3d}
+.dx-flips.is-live .dx-flip__face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dx-flips.is-live .dx-flip__back{transform:rotateY(180deg)}
+.dx-flips.is-live .dx-flip.is-flipped .dx-flip__inner{transform:rotateY(180deg)}
+.dx-flips:not(.is-live) .dx-flip__face{grid-area:auto}
+.dx-flips:not(.is-live) .dx-flip__btn{display:none}
+.dx-flips.is-live .dx-flip{cursor:pointer}
+.dx-flips.is-live .dx-flip.is-peek .dx-flip__inner{animation:dxPeek 1.4s cubic-bezier(.3,.7,.3,1) .3s 1}
+@keyframes dxPeek{0%,100%{transform:none}35%{transform:rotateY(-24deg)}65%{transform:rotateY(8deg)}}
+.dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
+.dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
+@media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){
+  .dx-rot__win{display:none}
+  .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
   .dx__pause{display:none}
 }
 .dx-steps__head{margin-bottom:34px}
@@ -497,7 +625,6 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     b.addEventListener('click',function(){
       paused=!paused; b.setAttribute('aria-pressed',paused);
       b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
-      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
     });
   });
   [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
@@ -545,12 +672,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -587,7 +714,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -613,21 +740,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-vid .dx__rings{left:-300px;top:40%}
@@ -689,12 +806,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -731,7 +848,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -757,21 +874,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-tv__grid{display:grid;gap:30px;align-items:center}
@@ -846,12 +953,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -888,7 +995,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -914,21 +1021,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-check__top{margin-bottom:34px}
@@ -1069,7 +1166,6 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     b.addEventListener('click',function(){
       paused=!paused; b.setAttribute('aria-pressed',paused);
       b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
-      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
     });
   });
   [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
@@ -1117,12 +1213,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -1159,7 +1255,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -1185,21 +1281,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-org .dx__rings{right:-280px;bottom:-300px}
@@ -1257,7 +1343,6 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
     b.addEventListener('click',function(){
       paused=!paused; b.setAttribute('aria-pressed',paused);
       b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
-      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
     });
   });
   [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){
@@ -1305,12 +1390,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -1347,7 +1432,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -1373,21 +1458,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-dead__card{position:relative;display:grid;gap:24px;align-items:center;background:var(--dx-grad);color:var(--dx-mist);border-radius:28px;padding:34px 24px;overflow:hidden;box-shadow:0 0 0 2px var(--dx-gold),0 50px 80px -44px rgba(1,38,43,.85)}
@@ -1437,12 +1512,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -1479,7 +1554,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -1505,21 +1580,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-next .dx__rings{left:-300px;top:-200px}
@@ -1573,12 +1638,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -1615,7 +1680,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -1641,21 +1706,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-sec__card{display:grid;gap:20px;align-items:center;padding:30px 24px;border-radius:24px;background:var(--dx-white);border:2px solid var(--dx-teal);box-shadow:0 30px 60px -44px rgba(1,38,43,.8)}
@@ -1700,12 +1755,12 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -1742,7 +1797,7 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -1768,21 +1823,11 @@ Paste in the funnel step: **Settings → Tracking Code → Head**. It loads Jost
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-foot{padding-bottom:44px;border-top:2px solid var(--dx-gold)}
@@ -1883,7 +1928,7 @@ GHL menu labels move between versions. If a name below doesn't match your screen
 3. **Put it right after the checkout.** Drag the new step so it sits directly below the checkout step. If you already have an upsell or order-confirmation step, place it after the last step the buyer sees before they're done.
 4. **Open the builder.** Click **Edit** on the new step and start from a blank page.
 5. **Paste the global head code.** In the builder, open **Settings → Tracking Code → Head**. Paste the *Global head code* block and save. Also set the page background color to `#FBF8F2`.
-6. **Build the sections, top to bottom.** For each of the 10 blocks, in order:
+6. **Build the sections, top to bottom.** For each of the 11 blocks, in order (1, 1B, 2 … 10):
    - Add a **Section** and set it to **Full Width**. Set top and bottom padding (and margins) to **0**, because each block has its own spacing.
    - Add a **1-column Row**. Set its padding to 0 and its width to full.
    - Drag in a **Custom Code** element (shown as *Code* or *Custom JS/HTML* in some builder versions). Click **Open Code Editor**, paste the block and save.

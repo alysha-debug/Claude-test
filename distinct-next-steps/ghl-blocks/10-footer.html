@@ -11,12 +11,12 @@
 .dx *,.dx *::before,.dx *::after{box-sizing:border-box}
 .dx:focus{outline:none}
 .dx__in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
-.dx h1,.dx h2,.dx h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
-.dx h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
-.dx h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
-.dx p{margin:0 0 14px}
-.dx strong{color:var(--dx-teal)}
-.dx h1 em,.dx h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
+:where(.dx) h1,:where(.dx) h2,:where(.dx) h3{font-family:inherit;font-weight:700;color:var(--dx-teal);margin:0;letter-spacing:-.015em}
+:where(.dx) h2{font-size:clamp(1.9rem,6.2vw,3rem);line-height:1.08;margin-bottom:16px}
+:where(.dx) h3{font-size:1.22rem;line-height:1.3;margin-bottom:6px}
+:where(.dx) p{margin:0 0 14px}
+:where(.dx) strong{color:var(--dx-teal)}
+:where(.dx) h1 em,:where(.dx) h2 em{font-style:italic;font-weight:700;color:var(--dx-gold)}
 .dx__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dx-gold-dk)}
 .dx__eyebrow::before{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-gold)}
 .dx__sub{font-weight:400;font-size:1.1rem;max-width:640px}
@@ -53,7 +53,7 @@
 .dx-js .dx [data-reveal].is-in{opacity:1;transform:none}
 @media (min-width:640px){.dx{padding:96px 32px}.dx__btn{width:auto}}
 @media (prefers-reduced-motion:reduce){.dx *{transition:none!important;animation:none!important}.dx-js .dx [data-reveal]{opacity:1;transform:none}}
-/* ---- Distinct motion kit: flipping words, flip cards, keyword ribbon ---- */
+/* ---- Distinct motion kit: flipping words and flip cards ---- */
 .dx-rot{display:inline}
 .dx-rot__win{display:inline-grid;perspective:700px;vertical-align:bottom}
 .dx-rot__w{grid-area:1/1;opacity:0;transform:rotateX(-95deg);transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease;white-space:nowrap}
@@ -79,21 +79,11 @@
 .dx-flip__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:10px 0 0;border:0;background:none;color:inherit;font:500 .9rem/1.2 'Jost',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
 .dx-flip__btn svg{width:18px;height:18px;stroke:currentColor;transition:transform .5s ease}
 .dx-flip:hover .dx-flip__front .dx-flip__btn svg{transform:rotate(180deg)}
-/* Keyword ribbon */
-.dx-ribbon{position:relative;z-index:1;overflow:hidden;background:var(--dx-goldgrad);color:var(--dx-teal)}
-.dx-ribbon__track{display:flex;width:max-content;animation:dxMarq 48s linear infinite}
-.dx-ribbon.is-paused .dx-ribbon__track{animation-play-state:paused}
-.dx-ribbon__track span{display:flex;align-items:center;gap:28px;padding:16px 14px;white-space:nowrap;font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
-.dx-ribbon__track i{display:inline-block;width:9px;height:9px;background:var(--dx-teal);transform:rotate(45deg)}
-.dx-ribbon__track em{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.2rem}
-@keyframes dxMarq{to{transform:translateX(-50%)}}
 @media (min-width:640px){.dx-flips--3{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:859px) and (min-width:640px){.dx-flips--3{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
   .dx-rot__win{display:none}
   .dx-rot .dx__sr{position:static!important;width:auto;height:auto;clip:auto;white-space:normal}
-  .dx-ribbon__track{animation:none;flex-wrap:wrap;width:auto}
-  .dx-ribbon__track span+span{display:none}
   .dx__pause{display:none}
 }
 .dx-foot{padding-bottom:44px;border-top:2px solid var(--dx-gold)}

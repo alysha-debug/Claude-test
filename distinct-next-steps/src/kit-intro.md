@@ -2,10 +2,10 @@
 
 Post-payment thank-you step for Distinct Tax Consulting Group®. It sits right after the $500 Distinct® Tax Assessment checkout.
 
-- **Layout:** single page, mobile-first, 10 sections. Each section is one GHL **Custom Code** element.
+- **Layout:** single page, mobile-first, 11 sections (1, 1B, then 2 through 10). Each section is one GHL **Custom Code** element.
 - **Self-contained:** each block carries its own CSS (brand tokens included) and its own small vanilla script where needed. There are no external frameworks. Jost is the only external file, loaded from Google Fonts.
 - **Live preview:** `index.html`, the whole page assembled from these same blocks.
-- **Paste-ready files:** `ghl-blocks/00-global-head.html` to `ghl-blocks/10-footer.html`. These are the same code as below.
+- **Paste-ready files:** `ghl-blocks/00-global-head.html` to `ghl-blocks/10-footer.html` (including `01b-transformation.html`). These are the same code as below.
 
 ## Brand palette in use
 
@@ -35,10 +35,10 @@ Colors come from your Canva designs from Nov 5, 2026 onward: Business Cards, Cap
 
 **Moving parts (no checkboxes, nothing to save):**
 - **Turning words:** the hero promise flips through *Highly valued. → Financially redefined. → Peace of mind obtained.* The organizer card cycles *main business → side businesses → rentals → nonprofits.*
-- **Keyword ribbon:** a gold band under the hero scrolls *Highly valued · Financially redefined · Peace of mind obtained · Protect more · Keep more · Build more · Judgment-free · Clarity · Confidence · Legacy.*
+- **The transformation (Section 1B, right after the hero):** six tiles start as the burdens people arrive with: *Worry, Confusion, Guessing, Feeling behind, Carrying it alone, Shame.* As the section scrolls into view, a gold line strikes through each one in turn, and it becomes its outcome: *Peace of mind, Clarity, A plan, Moving forward, A team beside you, No judgment.* A soft gold "sunrise" glow rises behind them. It plays once, with a "See it again" button. It is not a loop.
 - **Flip cards:** the 3 step cards and 3 document cards turn over on tap or click. The first card gives a small "peek" turn when it comes into view, to show it flips.
 - **Scroll-in:** sections slide in gently as visitors scroll.
-- **Accessibility:** moving words and the ribbon have a **Pause motion** button and stop on hover. Visitors who turn on "reduce motion" see the words written out, with nothing moving. Nothing strobes, and there are no countdown timers.
+- **Accessibility:** the turning words have a **Pause motion** button and stop on hover. Visitors who turn on "reduce motion" see the words written out and the transformation already complete, with nothing moving. Nothing strobes, and there are no countdown timers.
 
 **Distinct® keywords on the page and where they come from:**
 - **The Distinct® Experience:** Client Onboarding Master Deck p1 and Experience Guide
@@ -52,6 +52,6 @@ Colors come from your Canva designs from Nov 5, 2026 onward: Business Cards, Cap
 
 ## Anchors
 
-`#welcome` · `#steps` · `#welcome-video` · `#taxdome-video` · `#checklist` · `#organizer` · `#deadline` · `#what-next` · `#security` · `#footer`
+`#welcome` · `#transformation` · `#steps` · `#welcome-video` · `#taxdome-video` · `#checklist` · `#organizer` · `#deadline` · `#what-next` · `#security` · `#footer`
 
 Every section is a real landmark with a heading, so keyboard and screen-reader users land in the right place when they follow an anchor link. It has `tabindex="-1"` and a `scroll-margin-top` offset.

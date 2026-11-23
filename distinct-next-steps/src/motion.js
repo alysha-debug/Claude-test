@@ -17,7 +17,6 @@
     b.addEventListener('click',function(){
       paused=!paused; b.setAttribute('aria-pressed',paused);
       b.querySelector('[data-pause-label]').textContent=paused?'Play motion':'Pause motion';
-      [].forEach.call(root.querySelectorAll('.dx-ribbon'),function(x){x.classList.toggle('is-paused',paused)});
     });
   });
   [].forEach.call(root.querySelectorAll('.dx-flips'),function(list){

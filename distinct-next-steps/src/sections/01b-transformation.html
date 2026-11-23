@@ -1,0 +1,69 @@
+<!-- ===== SECTION 1B: TRANSFORMATION (#transformation) ===== -->
+<!-- Plays once when it scrolls into view: each burden is struck through and becomes its Distinct® outcome,
+     while a gold "sunrise" glow rises behind. "See it again" replays it. Reduced-motion visitors see the final state. -->
+<section id="transformation" class="dx dx--deep dx-tx" tabindex="-1" aria-labelledby="dx-tx-title">
+<style>
+/*BASE*/
+.dx-tx{padding-top:80px;padding-bottom:88px}
+.dx-tx__glow{position:absolute;left:50%;bottom:-55%;width:150%;height:110%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(230,205,150,.34),rgba(177,129,50,.14) 45%,rgba(1,38,43,0) 72%);opacity:0;transition:opacity 3.2s ease,bottom 3.6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:0}
+.dx-tx.is-go .dx-tx__glow,.dx-tx.is-done .dx-tx__glow{opacity:1;bottom:-30%}
+.dx-tx__head{max-width:760px;margin:0 auto 44px;text-align:center}
+.dx-tx__head .dx__eyebrow{justify-content:center;max-width:none}
+.dx-tx__head .dx__eyebrow::after{content:"";flex:0 0 44px;height:2px;border-radius:2px;background:var(--dx-champ)}
+.dx-tx__head p:not(.dx__eyebrow){color:var(--dx-ivory);font-size:1.12rem;margin:0 auto;max-width:620px}
+.dx-tx__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dx-tx__item{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px;padding:22px 18px;border-radius:var(--dx-r);background:rgba(243,237,225,.04);border:1px solid rgba(230,205,150,.2);overflow:hidden;transition:background 1s ease,border-color 1s ease}
+.dx-tx__from{position:relative;align-self:flex-start;font-weight:500;font-size:.95rem;color:var(--dx-mist);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s ease,filter .7s ease;transform-origin:left bottom}
+.dx-tx__from::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;border-radius:2px;background:var(--dx-gold);transform:scaleX(1);transform-origin:left;transition:transform .55s ease}
+.dx-tx__to{display:block;margin-top:6px;font-weight:700;font-style:italic;font-size:clamp(1.35rem,4.6vw,1.9rem);line-height:1.1;background:var(--dx-goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease}
+/* Armed (JS present, waiting): burden shown big, outcome hidden */
+.dx-tx.is-armed .dx-tx__from{transform:translateY(34px) scale(1.7);color:var(--dx-ivory)}
+.dx-tx.is-armed .dx-tx__from::after{transform:scaleX(0)}
+.dx-tx.is-armed .dx-tx__to{opacity:0;transform:translateY(16px);filter:blur(8px)}
+/* Go: strike, shrink, reveal — staggered per tile */
+.dx-tx.is-go .dx-tx__from{transform:none;color:var(--dx-mist);opacity:.75;transition-delay:calc(var(--i)*.5s + .45s)}
+.dx-tx.is-go .dx-tx__from::after{transform:scaleX(1);transition-delay:calc(var(--i)*.5s)}
+.dx-tx.is-go .dx-tx__to{opacity:1;transform:none;filter:none;transition-delay:calc(var(--i)*.5s + .65s)}
+.dx-tx.is-go .dx-tx__item{background:rgba(230,205,150,.07);border-color:rgba(230,205,150,.42);transition-delay:calc(var(--i)*.5s + .65s)}
+.dx-tx__close{margin:44px auto 0;text-align:center;max-width:760px}
+.dx-tx__close p{margin:0 0 20px;font-weight:700;font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.35;color:var(--dx-ivory)}
+.dx-tx__close em{font-style:italic;color:var(--dx-champ)}
+.dx-tx__replay{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 18px;border-radius:999px;border:1px solid rgba(230,205,150,.6);background:transparent;color:var(--dx-champ);font:500 .85rem/1 'Jost',system-ui,sans-serif;letter-spacing:.08em;cursor:pointer}
+.dx-tx__replay svg{width:16px;height:16px;stroke:currentColor}
+@media (min-width:760px){.dx-tx__list{grid-template-columns:repeat(3,1fr);gap:18px}.dx-tx__item{min-height:170px;padding:26px 24px}}
+@media (prefers-reduced-motion:reduce){.dx-tx__replay{display:none}}
+</style>
+<div class="dx-tx__glow" aria-hidden="true"></div>
+<div class="dx__in">
+  <div class="dx-tx__head" data-reveal>
+    <p class="dx__eyebrow">Your Distinct® Experience</p>
+    <h2 id="dx-tx-title">This is where it starts to <em>change.</em></h2>
+    <p>Whatever brought you here, whether it's unfiled years, letters from the IRS or books that fell behind, you don't have to carry it alone anymore.</p>
+  </div>
+  <ul class="dx-tx__list">
+    <li class="dx-tx__item" style="--i:0"><span class="dx__sr">Worry becomes peace of mind.</span><span class="dx-tx__from" aria-hidden="true">Worry</span><span class="dx-tx__to" aria-hidden="true">Peace of mind</span></li>
+    <li class="dx-tx__item" style="--i:1"><span class="dx__sr">Confusion becomes clarity.</span><span class="dx-tx__from" aria-hidden="true">Confusion</span><span class="dx-tx__to" aria-hidden="true">Clarity</span></li>
+    <li class="dx-tx__item" style="--i:2"><span class="dx__sr">Guessing becomes a plan.</span><span class="dx-tx__from" aria-hidden="true">Guessing</span><span class="dx-tx__to" aria-hidden="true">A plan</span></li>
+    <li class="dx-tx__item" style="--i:3"><span class="dx__sr">Feeling behind becomes moving forward.</span><span class="dx-tx__from" aria-hidden="true">Feeling behind</span><span class="dx-tx__to" aria-hidden="true">Moving forward</span></li>
+    <li class="dx-tx__item" style="--i:4"><span class="dx__sr">Carrying it alone becomes a team beside you.</span><span class="dx-tx__from" aria-hidden="true">Carrying it alone</span><span class="dx-tx__to" aria-hidden="true">A team beside you</span></li>
+    <li class="dx-tx__item" style="--i:5"><span class="dx__sr">Shame becomes no judgment.</span><span class="dx-tx__from" aria-hidden="true">Shame</span><span class="dx-tx__to" aria-hidden="true">No judgment</span></li>
+  </ul>
+  <div class="dx-tx__close" data-reveal>
+    <p>Highly valued. Financially redefined. <em>Peace of mind obtained.</em></p>
+    <button type="button" class="dx-tx__replay" data-tx-replay><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>See it again</button>
+  </div>
+</div>
+<script>
+(function(root){
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){root.classList.add('is-done');return;}
+  root.classList.add('is-armed');
+  function play(){root.classList.remove('is-go');void root.offsetWidth;root.classList.add('is-go');}
+  var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){play();io.disconnect();}},{threshold:.35});
+  io.observe(root.querySelector('.dx-tx__list'));
+  var btn=root.querySelector('[data-tx-replay]');
+  if(btn) btn.addEventListener('click',function(){root.classList.remove('is-go');setTimeout(play,450);});
+})(document.currentScript&&document.currentScript.closest('.dx'));
+</script>
+</section>

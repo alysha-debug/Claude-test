@@ -57,7 +57,7 @@ GHL menu labels move between versions. If a name below doesn't match your screen
 3. **Put it right after the checkout.** Drag the new step so it sits directly below the checkout step. If you already have an upsell or order-confirmation step, place it after the last step the buyer sees before they're done.
 4. **Open the builder.** Click **Edit** on the new step and start from a blank page.
 5. **Paste the global head code.** In the builder, open **Settings → Tracking Code → Head**. Paste the *Global head code* block and save. Also set the page background color to `#FBF8F2`.
-6. **Build the sections, top to bottom.** For each of the 10 blocks, in order:
+6. **Build the sections, top to bottom.** For each of the 11 blocks, in order (1, 1B, 2 … 10):
    - Add a **Section** and set it to **Full Width**. Set top and bottom padding (and margins) to **0**, because each block has its own spacing.
    - Add a **1-column Row**. Set its padding to 0 and its width to full.
    - Drag in a **Custom Code** element (shown as *Code* or *Custom JS/HTML* in some builder versions). Click **Open Code Editor**, paste the block and save.
